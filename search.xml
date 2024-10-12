@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title></title>
+      <link href="/posts/0.html"/>
+      <url>/posts/0.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/posts/0.html"/>
+      <url>/posts/0.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>LeeCode-02-跳跃游戏</title>
+      <link href="/posts/871adf45.html"/>
+      <url>/posts/871adf45.html</url>
+      
+        <content type="html"><![CDATA[<p>题目描述：<br>解题：<br>法一：超越时间限制<br>bool canJump(int* nums, int numsSize) {<br>    &#x2F;*<br>    题目理解：<br>    目的：从nums[0]跳到nums[numsSize - 1] 约束：跳跃长度jumplength &lt;&#x3D; nums[pos] pos:当前数组元素下标<br>    目标：如果可以达到目的 跳跃次数 越少越好 否则输出false<br>    特殊点：<br>    1.nums[pos] &#x3D; 0 &amp;&amp; pos &lt; numsSize - 1<br>    2.不满足跳到最后的条件：<br>        1&gt; 总会到达跳跃长度为0的下标<br>    思路：<br>    1.跳过nums[pos] &#x3D; 0 &amp;&amp; pos &lt; numsSize - 1的数组元素<br>    2.减少跳跃次数</p><pre><code>思路2：判断如何从nums[0]跳到跳跃长度为0的下标，能找到输出false,否则输出true1.遍历数组，找到nums[pos] = 0的pos思路3：只要能找到一条跳到nums[numsSize - 1]的路，能找到输出true,否则输出false1.pos = 0 从nums[pos]开始，每次跳跃nums[pos]，2.如果nums[pos] = 0 回到上一个位置space    if nums[space] &gt;= 2 则 pos = pos + nums[pos] - 1,否则继续退到上一个位置3.如果pos + nums[pos] &gt;= numsSize - 1 返回true*/if(nums[0] == 0 &amp;&amp; numsSize != 1)&#123;    return false;&#125;else if(nums[0] == 0 &amp;&amp; numsSize == 1)&#123;    return true;&#125;int pos = 0;int amount = 0;while(pos &lt;= numsSize - 1 &amp;&amp; pos &gt;= 0)&#123;    int space = nums[pos];  //  记录上一次走的步长    pos = pos + nums[pos];    amount++;    if(pos &lt; numsSize - 1 &amp;&amp; nums[pos] == 0 )&#123;        if(space &gt; 1 &amp;&amp; amount &gt; 0)&#123;            pos = pos - space - 1;        &#125;        else&#123;            if(amount &gt; 0)&#123;                pos = pos - 1;                amount--;            &#125;            for(int i = amount; i &gt; 0; i--)&#123;                pos = pos - nums[i];                if(pos &gt;= 0 &amp;&amp; nums[pos] &gt; 1)&#123;                    pos = pos + nums[pos] - 1;                &#125;                else if (pos = 0)&#123;                    return false;                &#125;            &#125;        &#125;    &#125;&#125;if(pos &gt;= numsSize - 1)&#123;    return true;&#125;else&#123;    return false;&#125;</code></pre><p>}<br>法二：<br>bool canJump(int* nums, int numsSize) {<br>    &#x2F;*思路：<br>        目的：跳到最后一个元素numsSize - 1，只要能跳跃的最大长度大于等于numsSize - 1就能到达<br>    *&#x2F;<br>    if(numsSize &#x3D;&#x3D; 1){<br>        return  true;<br>    }<br>    int reachmax &#x3D; 0;<br>    for(int i &#x3D; 0; i &lt; numsSize - 1; i++){<br>        if(nums[i] &#x3D;&#x3D; 0 &amp;&amp; reachmax &lt;&#x3D; i){<br>            return false;<br>        }<br>        reachmax &#x3D;  reachmax &gt; i + nums[i] ? reachmax : i + nums[i];<br>        if(reachmax &gt;&#x3D; numsSize - 1){<br>            return true;<br>        }<br>    }<br>    return false;<br>}<br>体会：<br>利用贪心算法寻找局部最优解<br>具体做法：每走一步就找寻一次最优解，直至找到最后<br>例如，在该问题中，走到index 0，更新一次能够走的最大距离，继续顺序走index 2，判断在index 2能走的最大距离，以此类推</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>LeeCode 01-坐上公交的最晚时间</title>
+      <link href="/posts/828b5000.html"/>
+      <url>/posts/828b5000.html</url>
+      
+        <content type="html"><![CDATA[<p>问题描述：给你一个下标从 0 开始长度为 n 的整数数组 buses ，其中 buses[i] 表示第 i 辆公交车的出发时间。同时给你一个下标从 0 开始长度为 m 的整数数组 passengers ，其中 passengers[j] 表示第 j 位乘客的到达时间。所有公交车出发的时间互不相同，所有乘客到达的时间也互不相同。</p><p>给你一个整数 capacity ，表示每辆公交车 最多 能容纳的乘客数目。</p><p>每位乘客都会排队搭乘下一辆有座位的公交车。如果你在 y 时刻到达，公交在 x 时刻出发，满足 y &lt;&#x3D; x  且公交没有满，那么你可以搭乘这一辆公交。最早 到达的乘客优先上车。</p><p>返回你可以搭乘公交车的最晚到达公交站时间。你 不能 跟别的乘客同时刻到达。</p><p>注意：数组 buses 和 passengers 不一定是有序的。</p><p>示例：<br>示例 1：</p><p>输入：buses &#x3D; [10,20], passengers &#x3D; [2,17,18,19], capacity &#x3D; 2<br>输出：16<br>解释：<br>第 1 辆公交车载着第 1 位乘客。<br>第 2 辆公交车载着你和第 2 位乘客。<br>注意你不能跟其他乘客同一时间到达，所以你必须在第二位乘客之前到达。<br>示例 2：</p><p>输入：buses &#x3D; [20,30,10], passengers &#x3D; [19,13,26,4,25,11,21], capacity &#x3D; 2<br>输出：20<br>解释：<br>第 1 辆公交车载着第 4 位乘客。<br>第 2 辆公交车载着第 6 位和第 2 位乘客。<br>第 3 辆公交车载着第 1 位乘客和你。</p><p>提示：</p><p>n &#x3D;&#x3D; buses.length<br>m &#x3D;&#x3D; passengers.length<br>1 &lt;&#x3D; n, m, capacity &lt;&#x3D; 105<br>2 &lt;&#x3D; buses[i], passengers[i] &lt;&#x3D; 109<br>buses 中的元素 互不相同 。<br>passengers 中的元素 互不相同 。</p><p>本人做法：<br>int latestTimeCatchTheBus(int* buses, int busesSize, int* passengers, int passengersSize, int capacity) {<br>   &#x2F;*<br>   总思路</p><ol><li>排序 将buses,passages数组从小到大排序</li><li>最晚时间到达 即<br>1&gt; 选择到达时间最晚的公交 即下标为N-1的数组<br>2&gt; 按照乘客到达的时间从早到晚依次将busessize-1量公交车乘客安排完毕<br>3&gt; 继续安排最后一辆公交车的乘客<br>   <em>&#x2F;<br>   &#x2F;</em><br>子问题一 排序 冒泡排序<br>1.依次比较i i+1两个元素的大小<br>1.1 若i &gt; i + 1,返回1<br>1.2 若i &lt; i + 1,交换二者位置<br>2.循环 n - 1 * n - 1次<br>   <em>&#x2F;<br>   &#x2F;*<br>   问题二 安排乘客<br>   1.从下标i &#x3D; 0 i&lt;busesSize-2 外层,j &#x3D; 0 内层 开始<br>   2.若*(buses + i)&gt;</em>(passengers + j)</li><li>j+1 z+1</li><li>z&#x3D;&#x3D;capacity或乘客不符合条件 i + 1<br>   *&#x2F;</li></ol><p>   int time; &#x2F;&#x2F;最晚到达时间<br>   int lasttime; &#x2F;&#x2F;原本最后一位乘客的抵达时间</p><p>   for(int j &#x3D; 0; j &lt; busesSize - 1; j++) {  &#x2F;&#x2F;公交车抵达时间排序<br>    for(int i &#x3D; 0; i &lt; busesSize - 1 - j; i++) {<br>        if(<em>(buses + i) &lt; *(buses + i + 1)) {<br>            continue;<br>        }<br>        else {<br>            int z &#x3D; *(buses + i);<br>            *(buses + i) &#x3D; *(buses + i + 1);<br>            *(buses + i + 1) &#x3D; z;<br>        }<br>    }<br>   }<br>    for(int j &#x3D; 0; j &lt; passengersSize - 1; j++) {    &#x2F;&#x2F;乘客到达时间排序<br>     for(int i &#x3D; 0; i &lt; passengersSize - 1 - j; i++) {<br>        if(*(passengers + i) &lt; *(passengers + i + 1)) {<br>            continue;<br>        }<br>        else {<br>            int z &#x3D; *(passengers + i);<br>            *(passengers + i) &#x3D; *(passengers + i + 1);<br>            *(passengers + i + 1) &#x3D; z;<br>        }<br>    }<br>   }<br>    int j1 &#x3D; 0;<br>    int i &#x3D; 0;<br>    int q &#x3D; capacity;<br>    for(i &#x3D; 0; i &lt;&#x3D; busesSize-2; i++){  &#x2F;&#x2F;除最后一辆车外安排好其余乘客 j表示倒数第二辆车的最后一位乘客下标<br>        for(q &#x3D; capacity; q &gt; 0; q–){<br>            if(</em>(passengers + j1) &lt; *(buses + i)){   &#x2F;&#x2F;如果乘客到达时间小于公交车到达时间<br>                j1++;<br>            }<br>            else{<br>                break;<br>            }<br>        }<br>    }<br>    int j &#x3D; j1 - 1;</p><pre><code>if(passengersSize - j1 &gt;=capacity)&#123;    for(int c = capacity; c &gt; 0; c--)&#123;        if(*(passengers + j + c) - 1 != *(passengers + j + c - 1))&#123;            time = *(passengers + j + c) - 1;            break;        &#125;        else if(c == 1)&#123;            time = *(passengers + j + 1) - 1;  //极端情况，安排乘客抵达时间在第一个乘客前            break;        &#125;    &#125;&#125;</code></pre><p>   return time;</p><p>}</p><p>官方解答：<br>int compare(const void <em>a, const void <em>b) {<br>    return (</em>(int</em>)a - <em>(int</em>)b);<br>}</p><p>int latestTimeCatchTheBus(int* buses, int busesSize, int* passengers, int passengersSize, int capacity) {<br>    qsort(buses, busesSize, sizeof(int), compare);  &#x2F;&#x2F;公交车到达时间排序<br>    qsort(passengers, passengersSize, sizeof(int), compare);    &#x2F;&#x2F;乘客到达时间排序<br>    int pos &#x3D; 0;    &#x2F;&#x2F;第pos位乘客上车<br>    int space &#x3D; 0;  &#x2F;&#x2F;公交车容量</p><pre><code>for (int i = 0; i &lt; busesSize; i++) &#123;    int arrive = buses[i];  //第i（从0开始计数）量车情况    space = capacity;   //每辆公交车初始容量为capacity    while (space &gt; 0 &amp;&amp; pos &lt; passengersSize &amp;&amp; passengers[pos] &lt;= arrive) &#123;        //乘客上车条件：如果剩余容量&gt;0,还有乘客未走，以及乘客抵达时间&lt;=公交车到达时间        //反之若不满足任意条件，即，该辆公交车容量已满，或已经没有乘客，或乘客到达时间晚于公交车时间，跳出循环，转为下一辆车        space--;        pos++;        //在比较完下标为0的乘客时，pos = 1,已经指向下一位乘客数组下标，所以比到最后一位时，pos的值也会比下标大1，代表走了第几位（1开始计数）乘客    &#125;&#125;pos--;  //指向最后一位上车乘客的元素int lastCatchTime = space &gt; 0 ? buses[busesSize - 1] : passengers[pos];//space也可代表最后一辆公交车的剩余容量情况while (pos &gt;= 0 &amp;&amp; passengers[pos] == lastCatchTime) &#123;    pos--;    lastCatchTime--;&#125;return lastCatchTime;</code></pre><p>}</p><p>代码解读：</p><p>qsort – 用于数组排序的函数 英语quick sort快速排序<br>一、头文件<br>#include&lt;stdlib.h&gt;<br>二、格式<br>int cmp(const void <em>a,const void <em>b) {<br>    return <em>(int</em>)a-</em>(int</em>)b;<br>}<br>qsort(num, n, sizeof(int), cmp);<br>包含四个参数(数组名, 数组长度，数组元素数据类型所占字节，排序原则)<br>使用方法：<br>定义一个函数cmp(自命名)，通过cmp返回的参数确定排序规则，其中cmp函数的参数需要以(const void <em>a,consi void <em>b)的形式定义，表示a,b变量的数据类型未知，在return返回时，用强制类型转换转换为int型，</em>(int</em>)a - <em>(int</em>)b 表示递增顺序,同理，*(int*)b - <em>(int</em>)a 表示递减顺序<br>排序原则：<br>根据要排序数组元素数据类型的不同，可分为四种<br>1.int型<br>int cmp(const void <em>a,const void <em>b) {<br>    return <em>(int</em>)a-</em>(int</em>)b;<br>}<br>2.double型<br>int cmp(const void <em>a,const void <em>b) {<br>    return <em>(double</em>)a&gt;</em>(double</em>)b?1:-1;<br>}<br>需要注意浮点数会存在精度损失的问题，所以我们需要通过比较，来返回1或-1，以确定是增序还是降序。<br>3.char型<br>int cmp(const void <em>a,const void <em>b) {<br>    return <em>(char</em>)a-</em>(char</em>)b;<br>}<br>4.结构体型<br>struct node{<br>    int i;<br>    double j;<br>    char k;<br>};<br>int cmp(const void <em>a,const void <em>b) {<br>    return (</em>(node</em>)a).i-(<em>(node</em>)b).i;<br>}<br>深度剖析：<br>void qsort(void* base, &#x2F;&#x2F;指向了待排序数组的第一个元素<br>           size_t num,   &#x2F;&#x2F;待排序的元素个数<br>           size_t size, &#x2F;&#x2F;每个元素的大小，单位是字节<br>           int (* cmp)(const void*, const void*) &#x2F;&#x2F;指向一个函数，这个函数可以比较2个元素的大小<br>          );<br>返回类型void:我们改变的是数列的排序，实际只需要进行内存的操作，所以不需要返回值。<br>void* base:表示应传入初始地址，至于为什么是void类型，它不知道我们会传入什么数据，而void类型就像一个垃圾桶一样什么地址都可以仍进去，所以只能用void*类型。<br>size_t num:num数量，表示应传入的元素个数<br>size_t width:width宽度，表示应传入的每个元素占的字节大小<br>int (*cmp)(const void *, const void *):<br>应传入一个比较函数地址，用于比较两个数据的大小，因为传入的数据类型是不确定的，所以我们需要自己定义一个比较函数传到qsort比较函数里面去，以便它知道怎么样去比较两个数据的大小。</p><p>qsort可以排序任意类型的数据<br>比较2个整数的大小，&gt; &lt; &#x3D;&#x3D;<br>比较2个字符串的大小，strcmp<br>比较2个结构体数据（学生：张三，李四）指定比较的标准</p><p>const void <em>a<br>关键字 const<br>作用：用const修饰的变量或对象的值不能再被改变<br>根据数据类型的不同分为：<br>1.修饰普通变量<br>const int n&#x3D;5;<br>注意：用const修饰变量时，一定要给变量初始化，否则之后不能再进行赋值<br>int const n&#x3D;5;<br>两种情况，n的值都不能再被改变<br>2.修饰指针<br>    1&gt;常量指针：指针指向的内容是常量<br>        const int * n;<br>        int const * n;<br>    注意：仅仅指 指针指向的内容为常量，相当于，常量指针指向哪个变量，哪个变量的值不能被改变，但是不能通过这个指针改变变量的值，但还是可以通过其他的引用来改变变量的值 【存疑-那常量指针的意义在哪】<br>        int a&#x3D;5;<br>        const int</em> n&#x3D;&a;<br>        a&#x3D;6;<br>    2&gt;指针常量：指针自己是常量，即只能指向一个地址，但指向的内容可以改变<br>        int a&#x3D;5;<br>        int <em>p&#x3D;&a;<br>        int</em> const n&#x3D;&a;<br>        <em>p&#x3D;8;<br>区分指针常量，常量指针：字面翻译<br>    const int * n; 先常量后指针，常量指针<br>    int</em> const n&#x3D;&a; 先指针后常量，指针常量，指针（是）常量</p><p><em>(int</em>)a-<em>(int</em>)b<br>    (int*)a :强制类型转换，将a的数据类型强制转换成整型指针<br>    强制类型转换：(type_name) expression 即 (要转换的目标类型)被转换的变量或表达式</p><p>学习心得：<br>循环条件有顺序，eg:while (pos &gt;&#x3D; 0 &amp;&amp; passengers[pos] &#x3D;&#x3D; lastCatchTime) 判断完第一个条件符合后才进行第二个条件<br>所以必要的边界条件先写，再写后面的逻辑约束条件</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>算法-01-贪心算法1-Djikstra算法</title>
+      <link href="/posts/90b623e1.html"/>
+      <url>/posts/90b623e1.html</url>
+      
+        <content type="html"><![CDATA[<p>贪心算法:寻找局部最优解<br>大概有两种方法：Djikstra算法（迪杰斯特拉算法） 最小生成树Prim算法<br>Djikstra算法 </p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/posts/4a17b156.html"/>
+      <url>/posts/4a17b156.html</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+    
+    
+    <entry>
+      <title></title>
+      <link href="/js/ail_font.js"/>
+      <url>/js/ail_font.js</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/css/custom.css"/>
+      <url>/css/custom.css</url>
+      
+        <content type="html"><![CDATA[/* @font-face {  font-family: Candyhome;  src: url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/fonts/Candyhome.ttf);  font-display: swap;  font-weight: lighter;} */@font-face {    font-family: ZhuZiAYuanJWD;    src: url(https://npm.elemecdn.com/anzhiyu-blog@1.1.6/fonts/ZhuZiAWan.woff2);    font-display: swap;    font-weight: lighter;  }    div#menus {    font-family: "ZhuZiAYuanJWD";  }  h1#site-title {    font-family: ZhuZiAYuanJWD;    font-size: 3em !important;  }  a.article-title,  a.blog-slider__title,  a.categoryBar-list-link,  h1.post-title {    font-family: ZhuZiAYuanJWD;  }    .iconfont {    font-family: "iconfont" !important;    font-size: 3em;    /* 可以定义图标大小 */    font-style: normal;    -webkit-font-smoothing: antialiased;    -moz-osx-font-smoothing: grayscale;  }    /* 时间轴生肖icon */  svg.icon {    /* 这里定义svg.icon，避免和Butterfly自带的note标签冲突 */    width: 1em;    height: 1em;    /* width和height定义图标的默认宽度和高度*/    vertical-align: -0.15em;    fill: currentColor;    overflow: hidden;  }    .icon-zhongbiao::before {    color: #f7c768;  }    /* bilibli番剧插件 */  #article-container .bangumi-tab.bangumi-active {    background: var(--anzhiyu-theme);    color: var(--anzhiyu-ahoverbg);    border-radius: 10px;  }  a.bangumi-tab:hover {    text-decoration: none !important;  }  .bangumi-button:hover {    background: var(--anzhiyu-theme) !important;    border-radius: 10px !important;    color: var(--anzhiyu-ahoverbg) !important;  }  a.bangumi-button.bangumi-nextpage:hover {    text-decoration: none !important;  }  .bangumi-button {    padding: 5px 10px !important;  }    a.bangumi-tab {    padding: 5px 10px !important;  }  svg.icon.faa-tada {    font-size: 1.1em;  }  .bangumi-info-item {    border-right: 1px solid #f2b94b;  }  .bangumi-info-item span {    color: #f2b94b;  }  .bangumi-info-item em {    color: #f2b94b;  }    /* 解决artitalk的图标问题 */  #uploadSource > svg {    width: 1.19em;    height: 1.5em;  }    /*top-img黑色透明玻璃效果移除，不建议加，除非你执着于完全一图流或者背景图对比色明显 */  #page-header:not(.not-top-img):before {    background-color: transparent !important;  }    /* 首页文章卡片 */  #recent-posts > .recent-post-item {    background: rgba(255, 255, 255, 0.9);  }    /* 首页侧栏卡片 */  #aside-content .card-widget {    background: rgba(255, 255, 255, 0.9);  }    /* 文章页面正文背景 */  div#post {    background: rgba(255, 255, 255, 0.9);  }    /* 分页页面 */  div#page {    background: rgba(255, 255, 255, 0.9);  }    /* 归档页面 */  div#archive {    background: rgba(255, 255, 255, 0.9);  }    /* 标签页面 */  div#tag {    background: rgba(255, 255, 255, 0.9);  }    /* 分类页面 */  div#category {    background: rgba(255, 255, 255, 0.9);  }    /*夜间模式伪类遮罩层透明*/  [data-theme="dark"] #recent-posts > .recent-post-item {    background: #121212;  }    [data-theme="dark"] .card-widget {    background: #121212 !important;  }    [data-theme="dark"] div#post {    background: #121212 !important;  }    [data-theme="dark"] div#tag {    background: #121212 !important;  }    [data-theme="dark"] div#archive {    background: #121212 !important;  }    [data-theme="dark"] div#page {    background: #121212 !important;  }    [data-theme="dark"] div#category {    background: #121212 !important;  }    [data-theme="dark"] div#category {    background: transparent !important;  }  /* 页脚透明 */  #footer {    background: transparent !important;  }    /* 头图透明 */  #page-header {    background: transparent !important;  }    #rightside > div > button {    border-radius: 5px;  }    /* 滚动条 */    ::-webkit-scrollbar {    width: 10px;    height: 10px;  }    ::-webkit-scrollbar-thumb {    background-color: #3b70fc;    border-radius: 2em;  }    ::-webkit-scrollbar-corner {    background-color: transparent;  }    ::-moz-selection {    color: #fff;    background-color: #3b70fc;  }    /* 音乐播放器 */    /* .aplayer .aplayer-lrc {    display: none !important;  } */    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {    left: -66px !important;    transition: all 0.3s;    /* 默认情况下缩进左侧66px，只留一点箭头部分 */  }    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {    left: 0 !important;    transition: all 0.3s;    /* 鼠标悬停是左侧缩进归零，完全显示按钮 */  }    .aplayer.aplayer-fixed {    z-index: 999999 !important;  }    /* 评论框  */  .vwrap {    box-shadow: 2px 2px 5px #bbb;    background: rgba(255, 255, 255, 0.3);    border-radius: 8px;    padding: 30px;    margin: 30px 0px 30px 0px;  }    /* 设置评论框 */    .vcard {    box-shadow: 2px 2px 5px #bbb;    background: rgba(255, 255, 255, 0.3);    border-radius: 8px;    padding: 30px;    margin: 30px 0px 0px 0px;  }    /* md网站下划线 */  #article-container a:hover {    text-decoration: none !important;  }    #article-container #hpp_talk p img {    display: inline;  }    /* 404页面 */  #error-wrap {    position: absolute;    top: 40%;    right: 0;    left: 0;    margin: 0 auto;    padding: 0 1rem;    max-width: 1000px;    transform: translate(0, -50%);  }    #error-wrap .error-content {    display: flex;    flex-direction: row;    justify-content: center;    align-items: center;    margin: 0 1rem;    height: 18rem;    border-radius: 8px;    background: var(--card-bg);    box-shadow: var(--card-box-shadow);    transition: all 0.3s;  }    #error-wrap .error-content .error-img {    box-flex: 1;    flex: 1;    height: 100%;    border-top-left-radius: 8px;    border-bottom-left-radius: 8px;    background-color: #3b70fc;    background-position: center;    background-size: cover;  }    #error-wrap .error-content .error-info {    box-flex: 1;    flex: 1;    padding: 0.5rem;    text-align: center;    font-size: 14px;    font-family: Titillium Web, "PingFang SC", "Hiragino Sans GB", "Microsoft JhengHei", "Microsoft YaHei", sans-serif;  }  #error-wrap .error-content .error-info .error_title {    margin-top: -4rem;    font-size: 9em;  }  #error-wrap .error-content .error-info .error_subtitle {    margin-top: -3.5rem;    word-break: break-word;    font-size: 1.6em;  }  #error-wrap .error-content .error-info a {    display: inline-block;    margin-top: 0.5rem;    padding: 0.3rem 1.5rem;    background: var(--btn-bg);    color: var(--btn-color);  }    #body-wrap.error .aside-list {    display: flex;    flex-direction: row;    flex-wrap: nowrap;    bottom: 0px;    position: absolute;    padding: 1rem;    width: 100%;    overflow: scroll;  }    #body-wrap.error .aside-list .aside-list-group {    display: flex;    flex-direction: row;    flex-wrap: nowrap;    max-width: 1200px;    margin: 0 auto;  }    #body-wrap.error .aside-list .aside-list-item {    padding: 0.5rem;  }    #body-wrap.error .aside-list .aside-list-item img {    width: 100%;    object-fit: cover;    border-radius: 12px;  }    #body-wrap.error .aside-list .aside-list-item .thumbnail {    overflow: hidden;    width: 230px;    height: 143px;    background: var(--anzhiyu-card-bg);    display: flex;  }    #body-wrap.error .aside-list .aside-list-item .content .title {    -webkit-line-clamp: 2;    overflow: hidden;    display: -webkit-box;    -webkit-box-orient: vertical;    line-height: 1.5;    justify-content: center;    align-items: flex-end;    align-content: center;    padding-top: 0.5rem;    color: white;  }    #body-wrap.error .aside-list .aside-list-item .content time {    display: none;  }    /* 代码框主题 */  #article-container figure.highlight {    border-radius: 10px;  }]]></content>
+      
+    </entry>
+    
+    
+  
+</search>
