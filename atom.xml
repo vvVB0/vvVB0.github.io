@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-10-19T13:58:14.649Z</updated>
+  <updated>2024-10-23T07:07:14.284Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,19 +17,91 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="http://example.com/posts/0.html"/>
+    <id>http://example.com/posts/0.html</id>
+    <published>2024-10-23T07:07:13.945Z</published>
+    <updated>2024-10-23T07:07:14.284Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>9.小果的键盘</title>
+    <link href="http://example.com/posts/2532b67f.html"/>
+    <id>http://example.com/posts/2532b67f.html</id>
+    <published>2024-10-22T14:06:56.000Z</published>
+    <updated>2024-10-23T07:06:37.137Z</updated>
+    
+    <content type="html"><![CDATA[<p>题目：<br><img src="/../%E7%BB%83%E4%B9%A0%E9%A2%98/%E7%89%9B%E5%AE%A2/pic-%E7%89%9B%E5%AE%A2/9.%E5%B0%8F%E6%9E%9C%E7%9A%84%E9%94%AE%E7%9B%98.png" alt="alt text"><br>代码：<br>#include <iostream><br>#include <string><br>using namespace std;</p><p>int main(){<br>    int n;<br>    string s;<br>    cin&gt;&gt;n&gt;&gt;s;<br>    int num &#x3D; 0;</p><pre><code>for(int i = 0;i &lt; s.size() - 1;i++)&#123;    if(s[i] == &#39;V&#39; &amp;&amp; s[i + 1] == &#39;K&#39;)&#123;        num++;        s[i] = s[i + 1] = 0;    &#125;&#125;int pos = s.find(&quot;VV&quot;);if(pos &gt;= 0)&#123;    num++;&#125;else&#123;    pos = s.find(&quot;KK&quot;);    if(pos &gt;= 0) num++;&#125;cout&lt;&lt;num;return 0;</code></pre><p>}<br>错误原因：<br>1.s.find(“VV”)<br>函数引用字符串用””,引用字符时用’’<br>2.s.size()<br>忘记写括号导致出错<br>3.利用最朴素的方法做，不出错超时在考虑其他方法，不要总想着用现成函数，容易出错<br>4.出错时学会改变条件<br>eg:最初想法是 删去VK后的字符串，若长度大于1，且V第一次出现的位置不在最后，说明不是‘KV’的情况，num+1 错误<br>    则改变“互补”条件：只要有“VV”,”KK”时num就+1</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;img src=&quot;/../%E7%BB%83%E4%B9%A0%E9%A2%98/%E7%89%9B%E5%AE%A2/pic-%E7%89%9B%E5%AE%A2/9.%E5%B0%8F%E6%9E%9C%E7%9A%84%E9%94%AE%E7%9B%9</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>8.手机</title>
+    <link href="http://example.com/posts/b114fdb0.html"/>
+    <id>http://example.com/posts/b114fdb0.html</id>
+    <published>2024-10-20T14:06:56.000Z</published>
+    <updated>2024-10-23T07:06:37.134Z</updated>
+    
+    <content type="html"><![CDATA[<p>题目：<br><img src="/pic-%E6%B4%9B%E8%B0%B7%E5%AD%97%E7%AC%A6%E4%B8%B2/8.%E6%89%8B%E6%9C%BA.png" alt="alt text"><br>代码：<br>#include <iostream><br>#include <string><br>using namespace std;</p><p>int main(){<br>    string str;<br>    int num &#x3D; 0;<br>    getline(cin,str);<br>    for(int i &#x3D; 0; i &lt; str.size(); i++){<br>        if(str[i] &#x3D;&#x3D; ‘a’ ||str[i] &#x3D;&#x3D; ‘d’ ||str[i] &#x3D;&#x3D; ‘g’ ||str[i] &#x3D;&#x3D; ‘j’ ||str[i] &#x3D;&#x3D; ‘m’ ||str[i] &#x3D;&#x3D; ‘p’||str[i] &#x3D;&#x3D; ‘t’ ||str[i] &#x3D;&#x3D; ‘w’){<br>            num++;<br>        }<br>        else if(str[i] &#x3D;&#x3D; ‘b’ ||str[i] &#x3D;&#x3D; ‘e’ ||str[i] &#x3D;&#x3D; ‘h’ ||str[i] &#x3D;&#x3D; ‘k’ ||str[i] &#x3D;&#x3D; ‘n’ ||str[i] &#x3D;&#x3D; ‘q’ ||str[i] &#x3D;&#x3D; ‘u’ ||str[i] &#x3D;&#x3D; ‘x’){<br>            num &#x3D; num + 2;<br>        }<br>        else if(str[i] &#x3D;&#x3D; ‘c’ ||str[i] &#x3D;&#x3D; ‘f’ ||str[i] &#x3D;&#x3D; ‘i’ ||str[i] &#x3D;&#x3D; ‘l’ ||str[i] &#x3D;&#x3D; ‘o’ ||str[i] &#x3D;&#x3D; ‘r’ ||str[i] &#x3D;&#x3D; ‘v’ ||str[i] &#x3D;&#x3D; ‘y’){<br>            num &#x3D; num + 3;<br>        }<br>        else if(str[i] &#x3D;&#x3D; ‘s’ || str[i] &#x3D;&#x3D; ‘z’){<br>            num &#x3D; num + 4;<br>        }<br>        else num++;<br>    }<br>    cout&lt;&lt;num;<br>    return 0;<br>}<br>更好的思路：<br>#include”iostream”<br>#include”cstdio”<br>#include”cstring”&#x2F;&#x2F;为用strchr查找函数<br>using namespace std;<br>char s1[]&#x3D;{“ adgjmptw”},s2[]&#x3D;{“behknqux”},s3[]&#x3D;{“cfilorvy”},s4[]&#x3D;{“sz”};&#x2F;&#x2F;可以望文生义，分别开按1<del>4次键盘的常量数组<br>int main()<br>{<br> char c;<br> int s&#x3D;0;<br> while((c&#x3D;getchar())!&#x3D;EOF) &#x2F;&#x2F;！&#x3D;EOF表示还没输入结束<br>  {<br>  &#x2F;&#x2F;在s1</del>s4中依次找，找到就加上1~4<br>   if(strchr(s1,c)) s++;<br>   else if(strchr(s2,c)) s+&#x3D;2;<br>   else if(strchr(s3,c)) s+&#x3D;3;<br>   else if(strchr(s4,c)) s+&#x3D;4; &#x2F;&#x2F;注意这里不能写成else，因为还会有\n等字符<br>  }<br> cout&lt;&lt;s&lt;&lt;endl;<br> r</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;img src=&quot;/pic-%E6%B4%9B%E8%B0%B7%E5%AD%97%E7%AC%A6%E4%B8%B2/8.%E6%89%8B%E6%9C%BA.png&quot; alt=&quot;alt text&quot;&gt;&lt;br&gt;代码：&lt;br&gt;#include &lt;iostrea</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>4.（A组，B组）</title>
+    <link href="http://example.com/posts/c48970d5.html"/>
+    <id>http://example.com/posts/c48970d5.html</id>
+    <published>2024-10-20T14:06:56.000Z</published>
+    <updated>2024-10-23T07:06:37.141Z</updated>
+    
+    <content type="html"><![CDATA[<p>题目：<br><img src="/pic-%E7%89%9B%E5%AE%A2/4.%EF%BC%88A%E7%BB%84%EF%BC%8CB%E7%BB%84%EF%BC%89.png" alt="alt text"><br>代码：<br>#include <iostream><br>#include <string><br>using namespace std;</p><p>int main(){<br>    long long n,result &#x3D; 0;<br>    string s;<br>    cin&gt;&gt;n&gt;&gt;s;<br>    int num[26] &#x3D; {0},dp[26] &#x3D; {0};<br>    for(int i &#x3D; 0; i &lt; n;i++){<br>        result &#x3D; result + dp[s[i] - ‘a’];<br>        dp[s[i] - ‘a’] +&#x3D; i - num[s[i] - ‘a’];<br>        num[s[i] - ‘a’]++;<br>    }<br>    cout&lt;&lt;result;<br>    return 0;<br>}<br>方法思想：动态规划<br>eg:abcbcc<br>判断“abb”式的大体思想是：第一个字符和第二个字符不同，第二个字符和第三个字符相同 &#x3D;&#x3D; 每遍历一个字符“b”，判断在此之前有多少个“ab”<br>重难点:如何判断在此之前有多少个“ab”：用当前遍历的元素个数 - 该元素此前出现的次数 剩下的就是与该元素不同的元素，只要不同就能构成一个“ab”，能构成一个“ab”，该元素就能构成多少个“abb”<br>需要的变量：result存储结果，dp[26]存储构成的“ab”数量，num[26]存储不同字母出现的次数</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;img src=&quot;/pic-%E7%89%9B%E5%AE%A2/4.%EF%BC%88A%E7%BB%84%EF%BC%8CB%E7%BB%84%EF%BC%89.png&quot; alt=&quot;alt text&quot;&gt;&lt;br&gt;代码：&lt;br&gt;#include &lt;iostr</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>3.红色和紫色</title>
     <link href="http://example.com/posts/c6f25b8.html"/>
     <id>http://example.com/posts/c6f25b8.html</id>
     <published>2024-10-19T13:51:10.285Z</published>
     <updated>2024-10-19T13:58:14.649Z</updated>
     
-    <content type="html"><![CDATA[<p>题目：<br><img src="pic-牛客/3.红色和紫色.png" alt="alt text"><br>代码：</p><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <iostream></h1><p>using namespace std;</p><p>int main(){<br>    int n = 0;<br>    int m = 0;<br>    while(n &lt; 1){<br>        cin&gt;&gt;n;<br>    }<br>     while(m &lt; 1){<br>        cin&gt;&gt;m;<br>    }<br>    if(n % 2 == 1 &amp;&amp; m % 2 == 1){<br>        cout&lt;&lt;”akai”;<br>    }<br>    else{<br>        cout&lt;&lt;”yukari”;<br>    }<br>    return 0;<br>}<br>疑问：<br>为什么(n % 2 == 1 &amp;&amp; m % 2 == 1)这个是对的，(n * m % 2 == 1 )这个是错的</p>]]></content>
+    <content type="html"><![CDATA[<p>题目：<br><img src="/pic-%E7%89%9B%E5%AE%A2/3.%E7%BA%A2%E8%89%B2%E5%92%8C%E7%B4%AB%E8%89%B2.png" alt="alt text"><br>代码：<br>#include <iostream><br>using namespace std;</p><p>int main(){<br>    int n &#x3D; 0;<br>    int m &#x3D; 0;<br>    while(n &lt; 1){<br>        cin&gt;&gt;n;<br>    }<br>     while(m &lt; 1){<br>        cin&gt;&gt;m;<br>    }<br>    if(n % 2 &#x3D;&#x3D; 1 &amp;&amp; m % 2 &#x3D;&#x3D; 1){<br>        cout&lt;&lt;”akai”;<br>    }<br>    else{<br>        cout&lt;&lt;”yukari”;<br>    }<br>    return 0;<br>}<br>疑问：<br>为什么(n % 2 &#x3D;&#x3D; 1 &amp;&amp; m % 2 &#x3D;&#x3D; 1)这个是对的，(n * m % 2 &#x3D;&#x3D; 1 )这个是错的</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;img src=&quot;pic-牛客/3.红色和紫色.png&quot; alt=&quot;alt text&quot;&gt;&lt;br&gt;代码：&lt;/p&gt;
-&lt;h1 id=&quot;include&quot;&gt;&lt;a href=&quot;#include&quot; class=&quot;headerlink&quot; title=&quot;include &quot;&gt;&lt;</summary>
+    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;img src=&quot;/pic-%E7%89%9B%E5%AE%A2/3.%E7%BA%A2%E8%89%B2%E5%92%8C%E7%B4%AB%E8%89%B2.png&quot; alt=&quot;alt text&quot;&gt;&lt;br&gt;代码：&lt;br&gt;#include &lt;iostrea</summary>
       
     
     
@@ -138,26 +210,6 @@
   </entry>
   
   <entry>
-    <title>2.删除公共字符</title>
-    <link href="http://example.com/posts/22b2968b.html"/>
-    <id>http://example.com/posts/22b2968b.html</id>
-    <published>2024-10-01T14:06:56.000Z</published>
-    <updated>2024-10-19T13:56:10.417Z</updated>
-    
-    <content type="html"><![CDATA[<p>题目：<br><img src="/pic-%E7%89%9B%E5%AE%A2/2.%E5%88%A0%E9%99%A4%E5%85%AC%E5%85%B1%E5%AD%97%E7%AC%A6.png" alt="alt text"><br>代码：<br>#include <iostream><br>#include <string><br>using namespace std;<br>&#x2F;&#x2F;没有要求大小写 所以没做出说明<br>int main(){<br>    string str1,str2;<br>    getline(cin,str1);<br>    cin&gt;&gt;str2;<br>    for(int i &#x3D; 0; i &lt; str2.size();i++){<br>        int pos &#x3D; str1.find(str2[i]);<br>        while(pos &gt;&#x3D; 0){<br>            str1 &#x3D; str1.erase(pos,1); &#x2F;&#x2F;知识点1<br>            pos &#x3D; str1.find(str2[i]);<br>        }<br>    }<br>    cout&lt;&lt;str1;<br>    return 0;<br>}<br>知识点：<br>1.str1.erase(pos,1);<br>作用：删除string字符串str1里pos位置（从0开始数），的n个字符（这里N直接用的1）（包括pos位置）<br>头文件：#include <string></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;img src=&quot;/pic-%E7%89%9B%E5%AE%A2/2.%E5%88%A0%E9%99%A4%E5%85%AC%E5%85%B1%E5%AD%97%E7%AC%A6.png&quot; alt=&quot;alt text&quot;&gt;&lt;br&gt;代码：&lt;br&gt;#include</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>1.差值</title>
     <link href="http://example.com/posts/ac608bef.html"/>
     <id>http://example.com/posts/ac608bef.html</id>
@@ -178,18 +230,18 @@
   </entry>
   
   <entry>
-    <title>LeeCode-02-跳跃游戏2</title>
-    <link href="http://example.com/posts/1ce411cd.html"/>
-    <id>http://example.com/posts/1ce411cd.html</id>
-    <published>2024-09-26T14:06:56.000Z</published>
-    <updated>2024-10-16T11:50:41.901Z</updated>
+    <title>2.删除公共字符</title>
+    <link href="http://example.com/posts/22b2968b.html"/>
+    <id>http://example.com/posts/22b2968b.html</id>
+    <published>2024-10-01T14:06:56.000Z</published>
+    <updated>2024-10-19T13:56:10.417Z</updated>
     
-    <content type="html"><![CDATA[<p>int jump(int* nums, int numsSize) {<br>    &#x2F;*<br>    思路：<br>    1.都是从0开始，所以maxlength &#x3D; 0，每跳跃一次，遍历从index &#x3D; 0到index &#x3D; nums[i]，即这一次所能跳跃最大距离的所有的元素，判断跳跃这一 次所到达的最远距离，更新maxlength,以此类推，直至maxlength &gt;&#x3D; numsSize - 1<br>    *&#x2F;<br>    int maxlength &#x3D; nums[0];<br>    int amount &#x3D; 0;</p><pre><code>if(numsSize == 1)&#123;    return amount;&#125;if (maxlength  &gt;= numsSize - 1)&#123;        return amount + 1;    &#125;/*for(int i = 0; i &lt; numsSize; i++)&#123;    for(int j = i + 1; j &lt;= i + nums[i]; j++)&#123;        if(j == numsSize - 1)&#123;            return amount + 1;        &#125;        maxlength = maxlength &gt; nums[j] + j ? maxlength : nums[j] + j;    &#125;    amount = amount + 2;        if (maxlength  &gt;= numsSize - 1)&#123;        return amount;    &#125;    i = maxlength - 1;&#125;return amount;*/int i = 0;while(maxlength  &lt; numsSize - 1)&#123;     for(int j = i + 1; j &lt;= i + nums[i]; j++)&#123;        if(j == numsSize - 1)&#123;            return amount + 1;        &#125;        maxlength = maxlength &gt; nums[j] + j ? maxlength : nums[j] + j;    &#125;    amount = amount + 2;    i = maxlength;&#125;return amount;</code></pre><p>}</p><p>int jump(int* nums, int numsSize) {<br>    int maxlength &#x3D; nums[0];<br>    long amount &#x3D; 0; &#x2F;&#x2F; 将 amount 的类型改为 long</p><pre><code>if(numsSize == 1) &#123;    return amount;&#125;int i = 0;while (maxlength &lt;= numsSize - 1) &#123;    for (int j = i + 1; j &lt;= i + nums[i]; j++) &#123;        if (j == numsSize - 1) &#123;            return amount + 1;        &#125;        maxlength = maxlength &gt; nums[j] + j ? maxlength : nums[j] + j;        if (maxlength &gt;= numsSize - 1) &#123;            return amount + 2;        &#125;    &#125;    amount = amount + 2;    i = maxlength;&#125;return amount;</code></pre><p>}</p><p>从当前元素开始，遍历该元素值范围内能遍历的所有元素，判断选择哪个元素实现下一步走的最远<br>每遍历一个，计算一次选择该元素能到达的最远距离（下标加元素值）<br>eg:{2 3 1 1 4 6 2 1}<br>从2的下一个元素3开始遍历，选择3时，最远到达1 + 3 &#x3D; 4，选择1时，最远能到达2 + 1 &#x3D; 3，最远到达1，遍历结束，以4作为下一次遍历的开始<br>从4的下一个元素6开始遍历，选择6时，最远能到达5 + 6 &#x3D; 11，选择2时……  !!!不足点 已经达到结束条件，还要继续循环</p><p>int max(int a, int b) {<br>    return a &gt; b ? a : b;<br>}<br>int jump(int* nums, int numsSize) {<br>    int maxReach &#x3D; 0; &#x2F;&#x2F; 当前位置能到达的最远距离<br>    int steps &#x3D; 0; &#x2F;&#x2F; 跳跃次数<br>    int end &#x3D; 0; &#x2F;&#x2F; 当前跳跃范围的边界 上一次跳跃的的终点 第一次跳跃上一次的终点即为0</p><pre><code>for (int i = 0; i &lt; numsSize - 1; i++) &#123;    maxReach = max(maxReach, i + nums[i]);// 更新当前位置能到达的最远距离    if (i == end) &#123; // 如果到达当前跳跃范围的边界        end = maxReach; // 更新下一次跳跃的边界为当前位置能到达的最远距离        steps++; // 增加跳跃次数    &#125;&#125;return steps;</code></pre><p>}<br>eg:{2 3 1 1 4 6 2 1}</p>]]></content>
+    <content type="html"><![CDATA[<p>题目：<br><img src="/pic-%E7%89%9B%E5%AE%A2/2.%E5%88%A0%E9%99%A4%E5%85%AC%E5%85%B1%E5%AD%97%E7%AC%A6.png" alt="alt text"><br>代码：<br>#include <iostream><br>#include <string><br>using namespace std;<br>&#x2F;&#x2F;没有要求大小写 所以没做出说明<br>int main(){<br>    string str1,str2;<br>    getline(cin,str1);<br>    cin&gt;&gt;str2;<br>    for(int i &#x3D; 0; i &lt; str2.size();i++){<br>        int pos &#x3D; str1.find(str2[i]);<br>        while(pos &gt;&#x3D; 0){<br>            str1 &#x3D; str1.erase(pos,1); &#x2F;&#x2F;知识点1<br>            pos &#x3D; str1.find(str2[i]);<br>        }<br>    }<br>    cout&lt;&lt;str1;<br>    return 0;<br>}<br>知识点：<br>1.str1.erase(pos,1);<br>作用：删除string字符串str1里pos位置（从0开始数），的n个字符（这里N直接用的1）（包括pos位置）<br>头文件：#include <string></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;int jump(int* nums, int numsSize) {&lt;br&gt;    &amp;#x2F;*&lt;br&gt;    思路：&lt;br&gt;    1.都是从0开始，所以maxlength &amp;#x3D; 0，每跳跃一次，遍历从index &amp;#x3D; 0到index &amp;#x3D; n</summary>
+    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;img src=&quot;/pic-%E7%89%9B%E5%AE%A2/2.%E5%88%A0%E9%99%A4%E5%85%AC%E5%85%B1%E5%AD%97%E7%AC%A6.png&quot; alt=&quot;alt text&quot;&gt;&lt;br&gt;代码：&lt;br&gt;#include</summary>
       
     
     
@@ -210,6 +262,26 @@
       
       
     <summary type="html">&lt;p&gt;题目描述：&lt;br&gt;解题：&lt;br&gt;法一：超越时间限制&lt;br&gt;bool canJump(int* nums, int numsSize) {&lt;br&gt;    &amp;#x2F;*&lt;br&gt;    题目理解：&lt;br&gt;    目的：从nums[0]跳到nums[numsSize - 1] 约</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LeeCode-02-跳跃游戏2</title>
+    <link href="http://example.com/posts/1ce411cd.html"/>
+    <id>http://example.com/posts/1ce411cd.html</id>
+    <published>2024-09-26T14:06:56.000Z</published>
+    <updated>2024-10-16T11:50:41.901Z</updated>
+    
+    <content type="html"><![CDATA[<p>int jump(int* nums, int numsSize) {<br>    &#x2F;*<br>    思路：<br>    1.都是从0开始，所以maxlength &#x3D; 0，每跳跃一次，遍历从index &#x3D; 0到index &#x3D; nums[i]，即这一次所能跳跃最大距离的所有的元素，判断跳跃这一 次所到达的最远距离，更新maxlength,以此类推，直至maxlength &gt;&#x3D; numsSize - 1<br>    *&#x2F;<br>    int maxlength &#x3D; nums[0];<br>    int amount &#x3D; 0;</p><pre><code>if(numsSize == 1)&#123;    return amount;&#125;if (maxlength  &gt;= numsSize - 1)&#123;        return amount + 1;    &#125;/*for(int i = 0; i &lt; numsSize; i++)&#123;    for(int j = i + 1; j &lt;= i + nums[i]; j++)&#123;        if(j == numsSize - 1)&#123;            return amount + 1;        &#125;        maxlength = maxlength &gt; nums[j] + j ? maxlength : nums[j] + j;    &#125;    amount = amount + 2;        if (maxlength  &gt;= numsSize - 1)&#123;        return amount;    &#125;    i = maxlength - 1;&#125;return amount;*/int i = 0;while(maxlength  &lt; numsSize - 1)&#123;     for(int j = i + 1; j &lt;= i + nums[i]; j++)&#123;        if(j == numsSize - 1)&#123;            return amount + 1;        &#125;        maxlength = maxlength &gt; nums[j] + j ? maxlength : nums[j] + j;    &#125;    amount = amount + 2;    i = maxlength;&#125;return amount;</code></pre><p>}</p><p>int jump(int* nums, int numsSize) {<br>    int maxlength &#x3D; nums[0];<br>    long amount &#x3D; 0; &#x2F;&#x2F; 将 amount 的类型改为 long</p><pre><code>if(numsSize == 1) &#123;    return amount;&#125;int i = 0;while (maxlength &lt;= numsSize - 1) &#123;    for (int j = i + 1; j &lt;= i + nums[i]; j++) &#123;        if (j == numsSize - 1) &#123;            return amount + 1;        &#125;        maxlength = maxlength &gt; nums[j] + j ? maxlength : nums[j] + j;        if (maxlength &gt;= numsSize - 1) &#123;            return amount + 2;        &#125;    &#125;    amount = amount + 2;    i = maxlength;&#125;return amount;</code></pre><p>}</p><p>从当前元素开始，遍历该元素值范围内能遍历的所有元素，判断选择哪个元素实现下一步走的最远<br>每遍历一个，计算一次选择该元素能到达的最远距离（下标加元素值）<br>eg:{2 3 1 1 4 6 2 1}<br>从2的下一个元素3开始遍历，选择3时，最远到达1 + 3 &#x3D; 4，选择1时，最远能到达2 + 1 &#x3D; 3，最远到达1，遍历结束，以4作为下一次遍历的开始<br>从4的下一个元素6开始遍历，选择6时，最远能到达5 + 6 &#x3D; 11，选择2时……  !!!不足点 已经达到结束条件，还要继续循环</p><p>int max(int a, int b) {<br>    return a &gt; b ? a : b;<br>}<br>int jump(int* nums, int numsSize) {<br>    int maxReach &#x3D; 0; &#x2F;&#x2F; 当前位置能到达的最远距离<br>    int steps &#x3D; 0; &#x2F;&#x2F; 跳跃次数<br>    int end &#x3D; 0; &#x2F;&#x2F; 当前跳跃范围的边界 上一次跳跃的的终点 第一次跳跃上一次的终点即为0</p><pre><code>for (int i = 0; i &lt; numsSize - 1; i++) &#123;    maxReach = max(maxReach, i + nums[i]);// 更新当前位置能到达的最远距离    if (i == end) &#123; // 如果到达当前跳跃范围的边界        end = maxReach; // 更新下一次跳跃的边界为当前位置能到达的最远距离        steps++; // 增加跳跃次数    &#125;&#125;return steps;</code></pre><p>}<br>eg:{2 3 1 1 4 6 2 1}</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;int jump(int* nums, int numsSize) {&lt;br&gt;    &amp;#x2F;*&lt;br&gt;    思路：&lt;br&gt;    1.都是从0开始，所以maxlength &amp;#x3D; 0，每跳跃一次，遍历从index &amp;#x3D; 0到index &amp;#x3D; n</summary>
       
     
     
