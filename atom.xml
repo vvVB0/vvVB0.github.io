@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-11-25T10:57:59.572Z</updated>
+  <updated>2024-11-26T13:49:14.739Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,19 +17,124 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>队列</title>
+    <link href="http://example.com/posts/b6c47025.html"/>
+    <id>http://example.com/posts/b6c47025.html</id>
+    <published>2024-11-26T13:37:57.126Z</published>
+    <updated>2024-11-26T13:49:14.739Z</updated>
+    
+    <content type="html"><![CDATA[<p>基于c++</p><p>队列核心思想： 先进先出</p><p>头文件：#include&lt; queue&gt;<br>1.定义及初始化：<br>queue<Type, Container> (&lt;数据类型，容器类型&gt;）<br>初始化时必须要有数据类型，容器可省略，省略时则默认为deque 类型<br>eg:<br>queue<int>q1;<br>queue<double>q2;<br>queue＜char＞q3；<br>//默认为用deque容器实现的queue；</p><p>queue＜char, list＜char＞＞q1；<br>//用list容器实现的queue </p><p>queue＜int, deque＜int＞＞q2；<br> //用deque容器实现的queue </p><p>2.queue常用函数<br>push() 在队尾插入一个元素<br>pop() 删除队列第一个元素<br>size() 返回队列中元素个数<br>empty() 如果队列空则返回true<br>front() 返回队列中的第一个元素<br>back() 返回队列中最后一个元素</p><p>eg:<br>1.push（）<br> queue <string> q;<br>    q.push(“first”);<br>    q.push(“second”);<br>    cout&lt;<q.front()<<endl; //输出 first2.pop() queue <string> q;<br>    q.push(“first”);<br>    q.push(“second”);<br>    q.pop();<br>    cout&lt;<q.front()<<endl;//输出 second 因为 first 已经被pop（）函数删掉了3.size()  queue <string> q;<br>       q.push(“first”);<br>       q.push(“second”);<br>       cout&lt;<q.size()<<endl;//输出2，因为队列中有两个元素4.empty()queue <string> q;<br>    cout&lt;<q.empty()<<endl;    q.push("first");    q.push("second");    cout<<q.empty()<<endl; //分别输出1和0    最开始队列为空，返回值为1（ture）；    插入两个元素后，队列不为空，返回值为0（false）；5.front() queue <string> q;<br>    q.push(“first”);<br>    q.push(“second”);<br>    cout&lt;<q.front()<<endl;    q.pop();    cout<<q.front()<<endl;//第一行输出first；    第二行输出second，因为pop（）已经将first删除了6.back() queue <string> q;<br>    q.push(“first”);<br>    q.push(“second”);<br>    cout&lt;&lt;q.back()&lt;&lt;endl;//输出最后一个元素second</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;基于c++&lt;/p&gt;
+&lt;p&gt;队列核心思想： 先进先出&lt;/p&gt;
+&lt;p&gt;头文件：#include&amp;lt; queue&amp;gt;&lt;br&gt;1.定义及初始化：&lt;br&gt;queue&lt;Type, Container&gt; (&amp;lt;数据类型，容器类型&amp;gt;）&lt;br&gt;初始化时必须要有数据类型，容器</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>补充知识</title>
+    <link href="http://example.com/posts/538de8cc.html"/>
+    <id>http://example.com/posts/538de8cc.html</id>
+    <published>2024-11-25T14:06:56.000Z</published>
+    <updated>2024-11-26T13:49:30.942Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.卡特兰数<br>C0 = 1,<br>C1 = 1,         C2 = 2,          C3 = 5,          C4 = 14,          C5 = 42,<br>C6 = 132,       C7 = 429,        C8 = 1430<br>递推式1:<br>f[n]=f[0]∗f[n−1]+f[1]∗f[n−2]+…+f[n−1]∗f<a href="n≥2">0</a></p><p>递推式2：<br>h[n]=h[n−1]∗(4∗n−2)/(n+1)</p><p>递推式3：也叫组合数公式<br>h[n]=C[2n,n]/(n+1)(n=0,1,2,…),C是组合数<br>PS:C[m,n]=C[m−1,n−1]+C[m−1,n] 且规定：C[n,0]=1 C[n,n]=1 C[0,0]=1</p><p>递推式4：也叫组合数公式<br>h[n]=C[2n,n]−C<a href="n=0,1,2,...">2n,n−1</a> </p><p>应用：<br>‘3.1044 [NOIP2003 普及组] 栈’ 出栈的顺序个数</p><p>建立数组f。f[i]表示i个数的全部可能性。<br>f[0] = 1, f[1] = 1; //当然只有一个<br>设 x 为当前出栈序列的最后一个，则x有n种取值 （总共有n个数，每个数都有可能最后出栈）</p><p>由于x是最后一个出栈的，所以可以将已经出栈的数分成两部分<br>比x小 比x大</p><p>比x小的数有x-1个，所以这些数的全部出栈可能为f[x-1]（因为入栈序列是1，2，3…n）<br>比x大的数有n-x个，所以这些数的全部出栈可能为f[n-x]</p><p>这两部分互相影响，所以一个x的取值能够得到的所有可能性为f[x-1] * f[n-x]<br>另外，由于x有n个取值，所以</p><p>ans = f[0]<em>f[n-1] + f[1]</em>f[n-2] + … + f[n-1]*f[0];</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;1.卡特兰数&lt;br&gt;C0 = 1,&lt;br&gt;C1 = 1,         C2 = 2,          C3 = 5,          C4 = 14,          C5 = 42,&lt;br&gt;C6 = 132,       C7 = 429,        C8 </summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>1.查找文献</title>
+    <link href="http://example.com/posts/9dfe9002.html"/>
+    <id>http://example.com/posts/9dfe9002.html</id>
+    <published>2024-11-25T14:06:56.000Z</published>
+    <updated>2024-11-27T08:40:25.172Z</updated>
+    
+    <content type="html"><![CDATA[<p>题目：</p><h1 id="【深基18-例3】查找文献"><a href="#【深基18-例3】查找文献" class="headerlink" title="【深基18.例3】查找文献"></a>【深基18.例3】查找文献</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>小 K 喜欢翻看洛谷博客获取知识。每篇文章可能会有若干个（也有可能没有）参考文献的链接指向别的博客文章。小 K 求知欲旺盛，如果他看了某篇文章，那么他一定会去看这篇文章的参考文献（如果他之前已经看过这篇参考文献的话就不用再看它了）。</p><p>假设洛谷博客里面一共有 $n(n\le10^5)$ 篇文章（编号为 1 到 $n$）以及 $m(m\le10^6)$ 条参考文献引用关系。目前小 K 已经打开了编号为 1 的一篇文章，请帮助小 K 设计一种方法，使小 K 可以不重复、不遗漏的看完所有他能看到的文章。</p><p>这边是已经整理好的参考文献关系图，其中，文献 X → Y 表示文章 X 有参考文献 Y。不保证编号为 1 的文章没有被其他文章引用。</p><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/f4n4tlhi.png" alt=""></p><p>请对这个图分别进行 DFS 和 BFS，并输出遍历结果。如果有很多篇文章可以参阅，请先看编号较小的那篇(因此你可能需要先排序)。</p><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>共 $m+1$ 行，第 1 行为 2 个数，$n$ 和 $m$，分别表示一共有 $n(n\le10^5)$ 篇文章（编号为 1 到 $n$）以及$m(m\le10^6)$ 条参考文献引用关系。</p><p>接下来 $m$ 行，每行有两个整数 $X,Y$ 表示文章 X 有参考文献 Y。</p><h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>共 2 行。<br>第一行为 DFS 遍历结果，第二行为 BFS 遍历结果。</p><h2 id="样例-1"><a href="#样例-1" class="headerlink" title="样例 #1"></a>样例 #1</h2><h3 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入 #1"></a>样例输入 #1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">8 9</span><br><span class="line">1 2</span><br><span class="line">1 3</span><br><span class="line">1 4</span><br><span class="line">2 5</span><br><span class="line">2 6</span><br><span class="line">3 7</span><br><span class="line">4 7</span><br><span class="line">4 8</span><br><span class="line">7 8</span><br></pre></td></tr></table></figure><h3 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出 #1"></a>样例输出 #1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 2 5 6 3 7 8 4 </span><br><span class="line">1 2 3 4 5 6 7 8</span><br></pre></td></tr></table></figure><p>代码：</p><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <bits/stdc++.h></h1><p>using namespace std;</p><p>const int maxn = 100001;<br>int n,m;<br>vector<int>l[maxn]; //存入每篇文献的参考文献  假设已经排好序<br>bool vis[maxn];</p><p>int dfs(int step,int z){//z表示第z篇文献<br>    if(step == n) return 0;<br>    for(int i = 0; i &lt; l[z].size(); i++){<br>        if(vis[l[z][i]]){<br>            vis[l[z][i]] = false;<br>            cout&lt;<l[z][i]<<" ";            dfs(step+1,l[z][i]);        }    }    return 0;} int bfs(){    queue<int>q;<br>    for(int i = 0; i &lt; l[1].size(); i++){<br>        if(vis[l[1][i]]){<br>            q.push(l[1][i]);<br>            vis[l[1][i]] = false;<br>        }<br>    }<br>    while(!q.empty()){<br>        int temp = q.front();<br>        q.pop();<br>        cout&lt;<temp<<" ";        for(int i = 0; i < l[temp].size(); i++){            if(vis[l[temp][i]]){                q.push(l[temp][i]);                vis[l[temp][i]] = false;            }        }    }    return 0;}int main(){    cin>&gt;n&gt;&gt;m;<br>    for(int i = 0; i &lt; m; i++){<br>        int a,b;<br>        cin&gt;&gt;a&gt;&gt;b;<br>        l[a].push_back(b);//在第a篇文献后面加入参考文献 a下标从1开始<br>    }<br>    for(int i = 1; i &lt;= n; i++){<br>        sort(l[i].begin(),l[i].end());<br>    }<br>    for(int i = 0; i &lt;= n; i++){<br>        vis[i] = true;<br>    }<br>    vis[1] = false;//下标从1开始<br>    cout&lt;&lt;”1 “;<br>    dfs(0,1);</p><pre><code>cout&lt;&lt;endl;for(int i = 0; i &lt;= n; i++)&#123;     vis[i] = true;&#125;vis[1] = false;//下标从1开始 cout&lt;&lt;&quot;1 &quot;;bfs();return 0;</code></pre><p>}<br>知识点：<br>1.队列<br>2.BFS:一层一层遍历<br>3.邻接表：用vector动态数组来存储<br>错误：<br>DFS 没有写return</p><p>int dfs(int step,int z){//z表示第z篇文献<br>    if(step == n) return 0;<br>    for(int i = 0; i &lt; l[z].size(); i++){<br>        if(vis[l[z][i]]){<br>            vis[l[z][i]] = false;<br>            cout&lt;&lt;l[z][i]&lt;&lt;” “;<br>            dfs(step+1,l[z][i]);<br>        }<br>    }<br>    return 0;//遍历完最后要返回<br>} </p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;题目：&lt;/p&gt;
+&lt;h1 id=&quot;【深基18-例3】查找文献&quot;&gt;&lt;a href=&quot;#【深基18-例3】查找文献&quot; class=&quot;headerlink&quot; title=&quot;【深基18.例3】查找文献&quot;&gt;&lt;/a&gt;【深基18.例3】查找文献&lt;/h1&gt;&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a h</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>2.图的遍历</title>
+    <link href="http://example.com/posts/58e6b116.html"/>
+    <id>http://example.com/posts/58e6b116.html</id>
+    <published>2024-11-25T14:06:56.000Z</published>
+    <updated>2024-11-30T12:28:47.274Z</updated>
+    
+    <content type="html"><![CDATA[<p>题目：</p><h1 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给出 $N$ 个点，$M$ 条边的有向图，对于每个点 $v$，求 $A(v)$ 表示从点 $v$ 出发，能到达的编号最大的点。</p><h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第 $1$ 行 $2$ 个整数 $N,M$，表示点数和边数。</p><p>接下来 $M$ 行，每行 $2$ 个整数 $U_i,V_i$，表示边 $(U_i,V_i)$。点用 $1,2,\dots,N$ 编号。</p><h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>一行 $N$ 个整数 $A(1),A(2),\dots,A(N)$。</p><h2 id="样例-1"><a href="#样例-1" class="headerlink" title="样例 #1"></a>样例 #1</h2><h3 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入 #1"></a>样例输入 #1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">4 3</span><br><span class="line">1 2</span><br><span class="line">2 4</span><br><span class="line">4 3</span><br></pre></td></tr></table></figure><h3 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出 #1"></a>样例输出 #1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4 4 3 4</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><ul><li>对于 $60\%$ 的数据，$1 \leq N,M \leq 10^3$。</li><li>对于 $100\%$ 的数据，$1 \leq N,M \leq 10^5$。</li></ul><p>代码：<br>$</p><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <bits/stdc++.h></h1><p>using namespace std;<br>const int maxn = 100001;<br>int m,n;<br>vector<int>l[maxn];<br>bool vis[maxn];<br>int result[maxn];<br>void dfs(int z,int a){<br>    vis[z] = true;//a表示一条路的最大值，将这条路上所有的点的结果全写为a<br>    result[z] = a;<br>    for(int i = 0; i &lt; l[z].size(); i++){<br>        if(!vis[l[z][i]]){<br>            dfs(l[z][i],a);<br>        }<br>    }<br>}<br>int main(){<br>    cin&gt;&gt;n&gt;&gt;m;<br>    for(int i = 0; i &lt; m; i++){<br>        int a,b;<br>        cin&gt;&gt;a&gt;&gt;b;<br>        l[b].push_back(a);<br>    }<br>    for(int i = n; i &gt;= 1; i—){<br>        if(!vis[i]){<br>            dfs(i,i);//确保遍历过每个点<br>        }<br>    }<br>    for(int i = 1; i &lt;= n; i++){<br>        cout&lt;&lt;result[i]&lt;&lt;” “;<br>    }<br>}<br>核心思想：倒着访问图</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;题目：&lt;/p&gt;
+&lt;h1 id=&quot;图的遍历&quot;&gt;&lt;a href=&quot;#图的遍历&quot; class=&quot;headerlink&quot; title=&quot;图的遍历&quot;&gt;&lt;/a&gt;图的遍历&lt;/h1&gt;&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>5.Function</title>
+    <link href="http://example.com/posts/7199d339.html"/>
+    <id>http://example.com/posts/7199d339.html</id>
+    <published>2024-11-25T14:06:56.000Z</published>
+    <updated>2024-11-25T13:43:52.297Z</updated>
+    
+    <content type="html"><![CDATA[<p>题目：<br>对于一个递归函数w(a,b,c)<br>如果  a ≤ 0  或  b ≤ 0 或  c ≤ 0 就返回值 1。<br>如果  a &gt; 20 或  b &gt; 20 或  c &gt; 20  就返回  w(20,20,20)<br>如果  a &lt; b 并且  b &lt; c  就返回 w(a,b,c−1)+w(a,b−1,c−1)−w(a,b−1,c)。<br>其它的情况就返回 w(a−1,b,c)+w(a−1,b−1,c)+w(a−1,b,c−1)−w(a−1,b−1,c−1)<br>这是个简单的递归函数，但实现起来可能会有些问题。当 a,b,c 均为 15 时，调用的次数将非常的多。你要想个办法才行。<br>注意：例如w(30,−1,0) 又满足条件 1 又满足条件 2，请按照最上面的条件来算，答案为 1。</p><p>输入格式<br>会有若干行。<br>并以 −1,−1,−1 结束。<br>输出格式<br>输出若干行，每一行格式：<br>w(a, b, c) = ans<br>eg:<br>输入<br>1 1 1<br>2 2 2<br>-1 -1 -1<br>输出<br>w(1, 1, 1) = 2<br>w(2, 2, 2) = 4</p><p>代码：</p><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <bits/stdc++.h></h1><h1 id="define-ll-long-long"><a href="#define-ll-long-long" class="headerlink" title="define ll long long"></a>define ll long long</h1><p>using namespace std;</p><p>ll w[21][21][21],a,b,c;</p><p>ll dp(ll a,ll b, ll c){</p><pre><code>if(a&lt;=0 || b&lt;=0 || c&lt;=0) return 1;if(a&gt;20 || b&gt;20 || c&gt;20)&#123;    w[20][20][20] = dp(20,20,20);    return w[20][20][20];&#125; if(w[a][b][c]) return w[a][b][c];if(a&lt;b &amp;&amp; b&lt;c)&#123;    w[a][b][c] = dp(a,b,c-1)+dp(a,b-1,c-1)-dp(a,b-1,c);    return w[a][b][c];&#125;w[a][b][c] = dp(a-1,b,c)+dp(a-1,b-1,c)+dp(a-1,b,c-1)-dp(a-1,b-1,c-1);return w[a][b][c];</code></pre><p>}<br>int main(){<br>    for(int l = 0; ;l++){<br>        cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;<br>        if(a==-1 &amp;&amp; b==-1 &amp;&amp; c==-1) break;<br>        cout&lt;&lt;”w(“&lt;&lt;a&lt;&lt;”, “&lt;&lt;b&lt;&lt;”, “&lt;&lt;c&lt;&lt;”)”&lt;&lt;” = “&lt;&lt;dp(a,b,c)&lt;&lt;endl;<br>    }<br>}<br>核心思想:记忆化搜索</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;题目：&lt;br&gt;对于一个递归函数w(a,b,c)&lt;br&gt;如果  a ≤ 0  或  b ≤ 0 或  c ≤ 0 就返回值 1。&lt;br&gt;如果  a &amp;gt; 20 或  b &amp;gt; 20 或  c &amp;gt; 20  就返回  w(20,20,20)&lt;br&gt;如果  a &amp;lt</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>错误合集</title>
     <link href="http://example.com/posts/36c606a9.html"/>
     <id>http://example.com/posts/36c606a9.html</id>
     <published>2024-11-21T13:33:44.542Z</published>
-    <updated>2024-11-25T10:57:59.572Z</updated>
+    <updated>2024-11-30T12:24:41.722Z</updated>
     
-    <content type="html"><![CDATA[<p>1.<br>undefined reference to `WinMain’<br>翻译：找不到main<br>原因：main拼写错误<br>2.初始化数组<br>错误：dp[1001] = 1；<br>原因：并非初始化所有数为1，只是让边界为1</p><p>错误：memset(dp, 1, sizeof(dp));<br>原因：并没有初始化所有数为1，因为memset是按照字节大小来初始化的，若机器字长为16位，初始化后相当于每个元素的值都为0001 0001 0001 0001（2进制），而并非1</p><p>纠正：所以初始化非零整数时，最好用循环</p>]]></content>
+    <content type="html"><![CDATA[<p>1.<br>undefined reference to `WinMain’<br>翻译：找不到main<br>原因：main拼写错误</p><p>2.初始化数组<br>错误：dp[1001] = 1；<br>原因：并非初始化所有数为1，只是让边界为1</p><p>错误：memset(dp, 1, sizeof(dp));<br>原因：并没有初始化所有数为1，因为memset是按照字节大小来初始化的，若机器字长为16位，初始化后相当于每个元素的值都为0001 0001 0001 0001（2进制），而并非1</p><p>纠正：所以初始化非零整数时，最好用循环</p><p>3.<br>[Error] expected initializer before numeric constant<br>错误：const int maxn  10001;没有写=<br>纠正：const int maxn = 10001;</p><p>4.<br>[Error] expected ‘)’ before ‘;’ token<br>[Error] expected ‘;’ before ‘)’ token<br>错误：dfs(step+1;l[z][i]);<br>纠正：dfs(step+1,l[z][i]);<br>应该用，而不是；</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;1.&lt;br&gt;undefined reference to `WinMain’&lt;br&gt;翻译：找不到main&lt;br&gt;原因：main拼写错误&lt;br&gt;2.初始化数组&lt;br&gt;错误：dp[1001] = 1；&lt;br&gt;原因：并非初始化所有数为1，只是让边界为1&lt;/p&gt;
-&lt;p&gt;错误：mem</summary>
+    <summary type="html">&lt;p&gt;1.&lt;br&gt;undefined reference to `WinMain’&lt;br&gt;翻译：找不到main&lt;br&gt;原因：main拼写错误&lt;/p&gt;
+&lt;p&gt;2.初始化数组&lt;br&gt;错误：dp[1001] = 1；&lt;br&gt;原因：并非初始化所有数为1，只是让边界为1&lt;/p&gt;
+&lt;p&gt;错误</summary>
       
     
     
@@ -42,7 +147,7 @@
     <link href="http://example.com/posts/72992f12.html"/>
     <id>http://example.com/posts/72992f12.html</id>
     <published>2024-11-21T13:16:12.651Z</published>
-    <updated>2024-11-25T10:57:59.576Z</updated>
+    <updated>2024-11-25T10:58:46.458Z</updated>
     
     <content type="html"><![CDATA[<p>题目：<br>给出正整数 n，要求按如下方式构造数列：<br>1.只有一个数 n 的数列是一个合法的数列。<br>2.在一个合法的数列的末尾加入一个正整数，但是这个正整数不能超过该数列最后一项的一半，可以得到一个新的合法数列。<br>请你求出，一共有多少个合法的数列。两个合法数列a,b不同当且仅当两数列长度不同或存在一个正整数i≤∣a∣,使得<br>a i !=b i<br>​输入格式<br>输入只有一行一个整数，表示 n。<br>输出格式<br>输出一行一个整数，表示合法的数列个数</p><p>代码：<br>//20</p><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <bits/stdc++.h></h1><p>using namespace std;</p><p>int n;<br>int dp[1001];</p><p>int dfs(int n){<br>    if(n == 1) {<br>        return dp[n];<br>    }<br>    if(dp[n] &gt; 1) {<br>        return dp[n];<br>    }<br>    for(int i = 1; i &lt;= n/2; i++){<br>        dp[n] += dfs(i);<br>    }<br>    return dp[n];<br>}</p><p>int main(){<br>    cin&gt;&gt;n;<br>    for(int i = 0; i &lt;= n; i++){<br>        dp[i] = 1;<br>    }<br>    cout&lt;&lt;dfs(n);<br>    return 0;<br>}<br>递归式：f[i]=f[1]+f[2]+f[3]+…+f[i/2]+1</p><p>分析以及优化：<br>eg: n = 6<br>1&gt;计算f(6) 未被计算 进入循环<br>2&gt;计算f(1) 到达最底层 计算 退出循环<br>3&gt;计算f(2) 未被计算 进入循环<br>    3.1&gt;计算f(1) 到达最底层 计算 退出循环<br>4&gt;计算f(3) 未被计算 进入循环<br>    4.1&gt;计算f(1)到达最底层 计算 退出循环<br>现象：f(1)被重复遍历 虽然并未进行计算，但多次遍历仍然耗费时间<br>整体上看：遍历了三遍f(1) 返回计算f(2) f(3) f(6)</p><p>优化：空间换时间<br>递推公式可以优化为：<br>f(n)=SUM(n/2)+1,SUM(i)=SUM(i−1)+f(i)<br>代码：</p><h1 id="include-1"><a href="#include-1" class="headerlink" title="include "></a>include <bits/stdc++.h></h1><p>using namespace std;</p><p>int f[1005], sum[505];</p><p>int F(int i); int Sum(int i);</p><p>int main(){<br>    int n; cin&gt;&gt;n;<br>    f[1] = sum[1] = 1;<br>    cout&lt;&lt;F(n);<br>}</p><p>int F(int i){<br>    if(f[i]) return f[i]; //剪枝<br>    return f[i] = Sum(i/2) + 1;  //利用赋值，记忆<br>}</p><p>int Sum(int i){<br>    if(sum[i]) return sum[i]; //剪枝<br>    return sum[i] = Sum(i - 1) + F(i);  //利用赋值，记忆<br>}<br>未优化的代码只记忆了每个数的序列数量<br>而优化后的代码 一个数组记忆每个数的序列数量 一个数组记忆前2/n个数序列的和<br>这样每次计算，不用再求f[1]+f[2]+f[3]+…+f[i/2]<br>只需要求f(n)=SUM(n/2)+1</p><p>eg: n = 6<br>1.计算f(6) 未定义 计算sum(3) + 1<br>    1.1计算sum(3) sum(3) = sum(2) + f(2)<br>        1.1.1计算sum(2) sum(2) = sum(1) + f(1)    并列 计算f(2) f(2) = sum(1) + 1<br>            1.1.1.1计算sum(1) 已被定义 返回        并列 计算f(1) 已被定义 返回<br>整体上看 只遍历了一遍f(1) sum(1) 返回计算sum(2) f(2) 再返回计算sum(3)</p><p>继续优化—“就地” 在原地修改数据结构或数组，而不使用额外的空间来存储中间结果<br>f(n)=SUM(n/2)+1,SUM(i)=SUM(i−1)+f(i) 相当于只存储最后计算的f(n)的结果，自下而上计算，每向上以及就覆盖一次原值</p><h1 id="include-2"><a href="#include-2" class="headerlink" title="include "></a>include <bits/stdc++.h></h1><p>using namespace std;</p><p>int f, sum[505];</p><p>int main(){<br>    int n; cin&gt;&gt;n;<br>    for(int i = 1; i &lt;= n/2; i++){<br>        f = sum[i/2] + 1;<br>        sum[i] = f + sum[i - 1];<br>    }<br>    cout&lt;&lt; sum[n/2] + 1;<br>}</p>]]></content>
     
@@ -50,6 +155,27 @@
       
       
     <summary type="html">&lt;p&gt;题目：&lt;br&gt;给出正整数 n，要求按如下方式构造数列：&lt;br&gt;1.只有一个数 n 的数列是一个合法的数列。&lt;br&gt;2.在一个合法的数列的末尾加入一个正整数，但是这个正整数不能超过该数列最后一项的一半，可以得到一个新的合法数列。&lt;br&gt;请你求出，一共有多少个合法的数列。两个合</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>02-记忆搜索</title>
+    <link href="http://example.com/posts/a01a576c.html"/>
+    <id>http://example.com/posts/a01a576c.html</id>
+    <published>2024-11-19T14:06:56.000Z</published>
+    <updated>2024-11-25T10:57:59.587Z</updated>
+    
+    <content type="html"><![CDATA[<p>算法思想：<br>通过存储已经遍历过的状态信息，从而避免对同一状态重复遍历的搜索算法<br>即要求所有状态的目标值都是固定的，不随外在因素而变化，例如斐波那契数列</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;算法思想：&lt;br&gt;通过存储已经遍历过的状态信息，从而避免对同一状态重复遍历的搜索算法&lt;br&gt;即要求所有状态的目标值都是固定的，不随外在因素而变化，例如斐波那契数列&lt;/p&gt;
+</summary>
       
     
     
@@ -80,39 +206,19 @@
   </entry>
   
   <entry>
-    <title>02-记忆搜索</title>
-    <link href="http://example.com/posts/a01a576c.html"/>
-    <id>http://example.com/posts/a01a576c.html</id>
-    <published>2024-11-19T14:06:56.000Z</published>
-    <updated>2024-11-25T10:57:59.587Z</updated>
-    
-    <content type="html"><![CDATA[<p>算法思想：<br>通过存储已经遍历过的状态信息，从而避免对同一状态重复遍历的搜索算法<br>即要求所有状态的目标值都是固定的，不随外在因素而变化，例如斐波那契数列</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;算法思想：&lt;br&gt;通过存储已经遍历过的状态信息，从而避免对同一状态重复遍历的搜索算法&lt;br&gt;即要求所有状态的目标值都是固定的，不随外在因素而变化，例如斐波那契数列&lt;/p&gt;
-</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>2.小鱼的数字游戏</title>
-    <link href="http://example.com/posts/c597fda3.html"/>
-    <id>http://example.com/posts/c597fda3.html</id>
+    <title>01-dp</title>
+    <link href="http://example.com/posts/c1f74d24.html"/>
+    <id>http://example.com/posts/c1f74d24.html</id>
     <published>2024-11-18T14:06:56.000Z</published>
-    <updated>2024-11-18T14:04:26.212Z</updated>
+    <updated>2024-11-19T13:51:58.596Z</updated>
     
-    <content type="html"><![CDATA[<p>题目：<br>输入格式<br>一行内输入一串整数，以 0 结束，以空格间隔。<br>输出格式<br>一行内倒着输出这一串整数，以空格间隔。<br>代码：<br>&#x2F;&#x2F;18<br>#include &lt;bits&#x2F;stdc++.h&gt;<br>using namespace std;<br>int main(){<br>    int a[101];<br>    int i &#x3D; 0;<br>    do{<br>        cin&gt;&gt;a[i];<br>        i++;<br>    }while(a[i - 1] !&#x3D; 0);</p><pre><code>//倒着输出for(int j = i - 2; j &gt;= 0; j--)&#123;    cout&lt;&lt;a[j]&lt;&lt;&quot; &quot;;&#125;</code></pre><p>}<br>知识点：<br>do{…}while() 翻译 &#x3D; 做某件事，当满足括号里的条件时</p>]]></content>
+    <content type="html"><![CDATA[<p>思想：拆分子问题，记住过往，减少重复计算。</p><p>典型特征：<br>最优子结构、状态转移方程、边界、重叠子问题<br>eg：<br>f(n-1)和f(n-2) 称为 f(n) 的最优子结构<br>f(n)= f（n-1）+f（n-2）就称为状态转移方程<br>f(1) = 1, f(2) = 2 就是边界<br>比如f(10)= f(9)+f(8),f(9) = f(8) + f(7) ,f(8)就是重叠子问题。</p><p>解题思路：<br>穷举分析<br>确定边界<br>找出规律，确定最优子结构<br>写出状态转移方程</p><p>1.穷举分析<br>拆分子问题：通过固定的方法如何得到目标<br>eg：<br>当台阶数是1的时候，有一种跳法，f（1） =1<br>当只有2级台阶时，有两种跳法，第一种是直接跳两级，第二种是先跳一级，然后再跳一级。即f(2) = 2;<br>当台阶是3级时，想跳到第3级台阶，要么是先跳到第2级，然后再跳1级台阶上去，要么是先跳到第 1级，然后一次迈 2 级台阶上去。所以f(3) = f(2) + f(1) =3<br>当台阶是4级时，想跳到第3级台阶，要么是先跳到第3级，然后再跳1级台阶上去，要么是先跳到第 2级，然后一次迈 2 级台阶上去。所以f(4) = f(3) + f(2) =5<br>当台阶是5级时……</p><p>2.确定边界<br>当台阶数是1的时候或者2的时候，可以明确知道青蛙跳法。f（1） =1，f(2) = 2，当台阶n&gt;=3时，已经呈现出规律f(3) = f(2) + f(1) =3，因此f（1） =1，f(2) = 2就是青蛙跳阶的边界。</p><p>3.找规律，确定最优子结构<br>n&gt;=3时，已经呈现出规律 f(n) = f(n-1) + f(n-2) ，因此，f(n-1)和f(n-2) 称为 f(n) 的最优子结构。</p><p>4.写出状态转移方程<br>f(n) = 1;n = 1<br>f(n) = 2;n = 2<br>f(n) = f(n - 1)f(n - 2); n &gt;= 3</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;题目：&lt;br&gt;输入格式&lt;br&gt;一行内输入一串整数，以 0 结束，以空格间隔。&lt;br&gt;输出格式&lt;br&gt;一行内倒着输出这一串整数，以空格间隔。&lt;br&gt;代码：&lt;br&gt;&amp;#x2F;&amp;#x2F;18&lt;br&gt;#include &amp;lt;bits&amp;#x2F;stdc++.h&amp;gt;&lt;br&gt;</summary>
+    <summary type="html">&lt;p&gt;思想：拆分子问题，记住过往，减少重复计算。&lt;/p&gt;
+&lt;p&gt;典型特征：&lt;br&gt;最优子结构、状态转移方程、边界、重叠子问题&lt;br&gt;eg：&lt;br&gt;f(n-1)和f(n-2) 称为 f(n) 的最优子结构&lt;br&gt;f(n)= f（n-1）+f（n-2）就称为状态转移方程&lt;br&gt;f(1</summary>
       
     
     
@@ -127,7 +233,7 @@
     <published>2024-11-18T14:06:56.000Z</published>
     <updated>2024-11-19T11:37:42.646Z</updated>
     
-    <content type="html"><![CDATA[<p>题目：<br>棋盘上 A 点有一个过河卒，需要走到目标 B 点。卒行走的规则：可以向下、或者向右。同时在棋盘上 C 点有一个对方的马，该马所在的点和所有跳跃一步可达的点称为对方马的控制点。因此称之为“马拦过河卒”。<br>棋盘用坐标表示，A 点 (0,0),B 点 (n,m)，同样马的位置坐标是需要给出的。<br>现在要求你计算出卒从 A 点能够到达 B 点的路径的条数，假设马的位置是固定不动的，并不是卒走一步马走一步。<br>输入格式<br>一行四个正整数，分别表示 B 点坐标和马的坐标。<br>输出格式<br>一个整数，表示所有的路径条数。<br><img src="/pic/2.%E8%BF%87%E6%B2%B3%E5%8D%92.png" alt="alt text"></p><p>dp思路<br>设当前点为（i，j）<br>最优子结构：(i-1,j) (i,j-1)两种路径可以到达<br>状态转移方程：（i，j） &#x3D; (i-1,j)或(i,j-1)<br>边界 ：B 点 (n,m)，以及特殊情况马的范围</p><p>&#x2F;&#x2F;01<br>#include &lt;bits&#x2F;stdc++.h&gt;<br>using namespace std;<br>&#x2F;*<br>1.标记马的范围<br>2.遍历点<br>*&#x2F;<br>bool vis[25][25];<br>long long dp[25][25];<br>int main(){<br>    int n,m,x,y;<br>    cin&gt;&gt;n&gt;&gt;m&gt;&gt;x&gt;&gt;y;<br>    n++;<br>    m++;<br>    x++;<br>    y++;<br>    vis[x][y] &#x3D; 1;<br>    vis[x-2][y-1]&#x3D;1;<br>    vis[x-2][y+1]&#x3D;1;<br>    vis[x+2][y-1]&#x3D;1;<br>    vis[x+2][y+1]&#x3D;1;<br>    vis[x-1][y+2]&#x3D;1;<br>    vis[x-1][y-2]&#x3D;1;<br>    vis[x+1][y+2]&#x3D;1;<br>    vis[x+1][y-2]&#x3D;1;</p><pre><code>dp[0][1] = 1;for(int i = 1; i &lt;= n; i++)&#123;    for(int j = 1; j &lt;= m; j++)&#123;        if(!vis[i][j])&#123;            dp[i][j] = dp[i - 1][j] + dp[i][j - 1];        &#125;    &#125;&#125;cout&lt;&lt;dp[n][m];</code></pre><p>} </p><p>题目本质：<br>求一点到另一条点在一些限制下总共有多少条路径<br>数学方法：标数法<br>相当于 走到该点的路径数量等于该点的上边点和右边点的标数和，和即为该点的标数<br>具体详见<br><a href="https://zhuanlan.zhihu.com/p/110868668">https://zhuanlan.zhihu.com/p/110868668</a></p><p>dp思想：<br>用vis[][]来当作遍历时的限制<br>dp[][]作为中间结果，直至到遍历到目标</p>]]></content>
+    <content type="html"><![CDATA[<p>题目：<br>棋盘上 A 点有一个过河卒，需要走到目标 B 点。卒行走的规则：可以向下、或者向右。同时在棋盘上 C 点有一个对方的马，该马所在的点和所有跳跃一步可达的点称为对方马的控制点。因此称之为“马拦过河卒”。<br>棋盘用坐标表示，A 点 (0,0),B 点 (n,m)，同样马的位置坐标是需要给出的。<br>现在要求你计算出卒从 A 点能够到达 B 点的路径的条数，假设马的位置是固定不动的，并不是卒走一步马走一步。<br>输入格式<br>一行四个正整数，分别表示 B 点坐标和马的坐标。<br>输出格式<br>一个整数，表示所有的路径条数。<br><img src="pic/2.过河卒.png" alt="alt text"></p><p>dp思路<br>设当前点为（i，j）<br>最优子结构：(i-1,j) (i,j-1)两种路径可以到达<br>状态转移方程：（i，j） = (i-1,j)或(i,j-1)<br>边界 ：B 点 (n,m)，以及特殊情况马的范围</p><p>//01</p><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <bits/stdc++.h></h1><p>using namespace std;<br>/<em><br>1.标记马的范围<br>2.遍历点 </em>/<br>bool vis[25][25];<br>long long dp[25][25];<br>int main(){<br>    int n,m,x,y;<br>    cin&gt;&gt;n&gt;&gt;m&gt;&gt;x&gt;&gt;y;<br>    n++;<br>    m++;<br>    x++;<br>    y++;<br>    vis[x][y] = 1;<br>    vis[x-2][y-1]=1;<br>    vis[x-2][y+1]=1;<br>    vis[x+2][y-1]=1;<br>    vis[x+2][y+1]=1;<br>    vis[x-1][y+2]=1;<br>    vis[x-1][y-2]=1;<br>    vis[x+1][y+2]=1;<br>    vis[x+1][y-2]=1;</p><pre><code>dp[0][1] = 1;for(int i = 1; i &lt;= n; i++)&#123;    for(int j = 1; j &lt;= m; j++)&#123;        if(!vis[i][j])&#123;            dp[i][j] = dp[i - 1][j] + dp[i][j - 1];        &#125;    &#125;&#125;cout&lt;&lt;dp[n][m];</code></pre><p>} </p><p>题目本质：<br>求一点到另一条点在一些限制下总共有多少条路径<br>数学方法：标数法<br>相当于 走到该点的路径数量等于该点的上边点和右边点的标数和，和即为该点的标数<br>具体详见<br><a href="https://zhuanlan.zhihu.com/p/110868668">https://zhuanlan.zhihu.com/p/110868668</a></p><p>dp思想：<br>用vis[][]来当作遍历时的限制<br>dp[][]作为中间结果，直至到遍历到目标</p>]]></content>
     
     
       
@@ -141,39 +247,19 @@
   </entry>
   
   <entry>
-    <title>01-dp</title>
-    <link href="http://example.com/posts/c1f74d24.html"/>
-    <id>http://example.com/posts/c1f74d24.html</id>
+    <title>2.小鱼的数字游戏</title>
+    <link href="http://example.com/posts/c597fda3.html"/>
+    <id>http://example.com/posts/c597fda3.html</id>
     <published>2024-11-18T14:06:56.000Z</published>
-    <updated>2024-11-19T13:51:58.596Z</updated>
+    <updated>2024-11-18T14:04:26.212Z</updated>
     
-    <content type="html"><![CDATA[<p>思想：拆分子问题，记住过往，减少重复计算。</p><p>典型特征：<br>最优子结构、状态转移方程、边界、重叠子问题<br>eg：<br>f(n-1)和f(n-2) 称为 f(n) 的最优子结构<br>f(n)&#x3D; f（n-1）+f（n-2）就称为状态转移方程<br>f(1) &#x3D; 1, f(2) &#x3D; 2 就是边界<br>比如f(10)&#x3D; f(9)+f(8),f(9) &#x3D; f(8) + f(7) ,f(8)就是重叠子问题。</p><p>解题思路：<br>穷举分析<br>确定边界<br>找出规律，确定最优子结构<br>写出状态转移方程</p><p>1.穷举分析<br>拆分子问题：通过固定的方法如何得到目标<br>eg：<br>当台阶数是1的时候，有一种跳法，f（1） &#x3D;1<br>当只有2级台阶时，有两种跳法，第一种是直接跳两级，第二种是先跳一级，然后再跳一级。即f(2) &#x3D; 2;<br>当台阶是3级时，想跳到第3级台阶，要么是先跳到第2级，然后再跳1级台阶上去，要么是先跳到第 1级，然后一次迈 2 级台阶上去。所以f(3) &#x3D; f(2) + f(1) &#x3D;3<br>当台阶是4级时，想跳到第3级台阶，要么是先跳到第3级，然后再跳1级台阶上去，要么是先跳到第 2级，然后一次迈 2 级台阶上去。所以f(4) &#x3D; f(3) + f(2) &#x3D;5<br>当台阶是5级时……</p><p>2.确定边界<br>当台阶数是1的时候或者2的时候，可以明确知道青蛙跳法。f（1） &#x3D;1，f(2) &#x3D; 2，当台阶n&gt;&#x3D;3时，已经呈现出规律f(3) &#x3D; f(2) + f(1) &#x3D;3，因此f（1） &#x3D;1，f(2) &#x3D; 2就是青蛙跳阶的边界。</p><p>3.找规律，确定最优子结构<br>n&gt;&#x3D;3时，已经呈现出规律 f(n) &#x3D; f(n-1) + f(n-2) ，因此，f(n-1)和f(n-2) 称为 f(n) 的最优子结构。</p><p>4.写出状态转移方程<br>f(n) &#x3D; 1;n &#x3D; 1<br>f(n) &#x3D; 2;n &#x3D; 2<br>f(n) &#x3D; f(n - 1)f(n - 2); n &gt;&#x3D; 3</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;思想：拆分子问题，记住过往，减少重复计算。&lt;/p&gt;
-&lt;p&gt;典型特征：&lt;br&gt;最优子结构、状态转移方程、边界、重叠子问题&lt;br&gt;eg：&lt;br&gt;f(n-1)和f(n-2) 称为 f(n) 的最优子结构&lt;br&gt;f(n)&amp;#x3D; f（n-1）+f（n-2）就称为状态转移方程&lt;b</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>1.小鱼比可爱</title>
-    <link href="http://example.com/posts/ad1413b6.html"/>
-    <id>http://example.com/posts/ad1413b6.html</id>
-    <published>2024-11-14T14:06:56.000Z</published>
-    <updated>2024-11-18T14:04:26.207Z</updated>
-    
-    <content type="html"><![CDATA[<p>题目：<br>人比人，气死人；鱼比鱼，难死鱼。小鱼最近参加了一个“比可爱”比赛，比的是每只鱼的可爱程度。参赛的鱼被从左到右排成一排，头都朝向左边，然后每只鱼会得到一个整数数值，表示这只鱼的可爱程度，很显然整数越大，表示这只鱼越可爱，而且任意两只鱼的可爱程度可能一样。由于所有的鱼头都朝向左边，所以每只鱼只能看见在它左边的鱼的可爱程度，它们心里都在计算，在自己的眼力范围内有多少只鱼不如自己可爱呢。请你帮这些可爱但是鱼脑不够用的小鱼们计算一下。<br>输入格式：<br>第一行输入一个正整数n，表示鱼的数目。</p><p>第二行内输入 n个正整数，用空格间隔，依次表示从左到右每只小鱼的可爱程度 </p><p>输入输出样例<br>6                   输出 0 0 0 3 1 2<br>4 3 0 5 1 2   </p><p>代码：</p><p>#include &lt;stdio.h&gt; </p><p>int main(){<br>    int n;<br>    scanf(“%d”,&amp;n);<br>    int nums[n];<br>    int result[n];<br>    for(int i &#x3D; 0; i &lt; n; i++){<br>        scanf(“%d”,&amp;nums[i]);<br>        int temp &#x3D; 0;<br>        for(int j &#x3D; 0; j &lt; i; j++){<br>            if(nums[i] &gt; nums[j]){<br>                temp++;<br>            }<br>        }<br>        result[i] &#x3D; temp;<br>    }<br>    for(int i &#x3D; 0; i &lt; n; i++){<br>        printf(“%d “,result[i]);<br>    }<br>    return 0;<br>}</p>]]></content>
+    <content type="html"><![CDATA[<p>题目：<br>输入格式<br>一行内输入一串整数，以 0 结束，以空格间隔。<br>输出格式<br>一行内倒着输出这一串整数，以空格间隔。<br>代码：<br>//18</p><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <bits/stdc++.h></h1><p>using namespace std;<br>int main(){<br>    int a[101];<br>    int i = 0;<br>    do{<br>        cin&gt;&gt;a[i];<br>        i++;<br>    }while(a[i - 1] != 0);</p><pre><code>//倒着输出for(int j = i - 2; j &gt;= 0; j--)&#123;    cout&lt;&lt;a[j]&lt;&lt;&quot; &quot;;&#125;</code></pre><p>}<br>知识点：<br>do{…}while() 翻译 = 做某件事，当满足括号里的条件时</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;题目：&lt;br&gt;人比人，气死人；鱼比鱼，难死鱼。小鱼最近参加了一个“比可爱”比赛，比的是每只鱼的可爱程度。参赛的鱼被从左到右排成一排，头都朝向左边，然后每只鱼会得到一个整数数值，表示这只鱼的可爱程度，很显然整数越大，表示这只鱼越可爱，而且任意两只鱼的可爱程度可能一样。由于所有</summary>
+    <summary type="html">&lt;p&gt;题目：&lt;br&gt;输入格式&lt;br&gt;一行内输入一串整数，以 0 结束，以空格间隔。&lt;br&gt;输出格式&lt;br&gt;一行内倒着输出这一串整数，以空格间隔。&lt;br&gt;代码：&lt;br&gt;//18&lt;/p&gt;
+&lt;h1 id=&quot;include&quot;&gt;&lt;a href=&quot;#include&quot; class=&quot;heade</summary>
       
     
     
@@ -188,13 +274,33 @@
     <published>2024-11-14T14:06:56.000Z</published>
     <updated>2024-11-18T14:04:26.215Z</updated>
     
-    <content type="html"><![CDATA[<p>题目：<br>楼梯有 N 阶，上楼可以一步上一阶，也可以一步上二阶。<br>编一个程序，计算共有多少种不同的走法。<br>输入格式 一个数字，楼梯数。<br>输出格式 输出走的方式总数。<br>输入输出样例<br>4       5</p><p>代码：<br>&#x2F;&#x2F;36<br>#include &lt;bits&#x2F;stdc++.h&gt;<br>using namespace std;</p><p>int main(){<br>    &#x2F;&#x2F;输入楼梯数量<br>    int n;<br>    scanf(“%d”,&amp;n);</p><pre><code>//特殊情况if(n == 1 || n == 2 ||n == 0)&#123;    cout&lt;&lt;n;    return 0;&#125; //计算方法数量 高精度加法 存储在string 转为int[] 相加到int[]去前导零 dp1变为dp1,之和变为dp1 string dp0 = &quot;1&quot;;string dp1 = &quot;2&quot;;for(int i = 2; i &lt; n; i++)&#123;    int a[5005] = &#123;0&#125;,b[5005] = &#123;0&#125;;    int temp[5005] = &#123;0&#125;;    for(int j = 0; j &lt; dp0.size(); j++)&#123;        a[dp0.size() - 1 - j] = dp0[j] - &#39;0&#39;;    &#125;    for(int j = 0; j &lt; dp1.size(); j++)&#123;        b[dp1.size() - 1 - j] = dp1[j] - &#39;0&#39;;    &#125;    int max = dp0.size() &gt; dp1.size() ? dp0.size() : dp1.size();    for(int j = 0; j &lt; max; j++)&#123;        temp[j] += a[j] + b[j];        temp[j + 1] = temp[j] / 10 ;        temp[j] = temp[j] % 10;    &#125;    if(temp[max] &gt; 0)&#123;        max++;    &#125;    dp0 = dp1;    dp1 = &quot;&quot;;    for(int j = max - 1; j &gt;= 0; j--)&#123;        dp1 += to_string(temp[j]);    &#125;    &#125;cout&lt;&lt;dp1; </code></pre><p>}<br>错误点：<br>1.字符串初始化 用”” 而不是’’<br>2.字符串转数字 dp1 +&#x3D; to_string(temp[j]);<br>    错误写法: dp1[j] &#x3D; to_string(temp[j]);错误原因：不能将string类型转为char类型<br>    to_string赋值的对象是字符串，而dp1[j]具体成了一个char类型的字符<br>3.题目数值范围未搞清楚 超出long long 范围 -2^63<del>2^63-1后就要进行高精度加法运算 long(int) -2^31</del>2^31-1<br>    1&gt;两个加数长度位置，用字符串类型存储<br>    2&gt;将加数逆序转换为数值存入数组<br>    3&gt;进行相加，存入整型数组（仍为逆序），注意最高位是否产生进位，若是，则数组长度要加一<br>        int a[5005] &#x3D; {0},b[5005] &#x3D; {0};<br>        int temp[5005] &#x3D; {0};<br>        for(int j &#x3D; 0; j &lt; dp0.size(); j++){<br>            a[dp0.size() - 1 - j] &#x3D; dp0[j] - ‘0’;<br>        }<br>        for(int j &#x3D; 0; j &lt; dp1.size(); j++){<br>            b[dp1.size() - 1 - j] &#x3D; dp1[j] - ‘0’;<br>        }<br>        int max &#x3D; dp0.size() &gt; dp1.size() ? dp0.size() : dp1.size();<br>        for(int j &#x3D; 0; j &lt; max; j++){<br>            temp[j] +&#x3D; a[j] + b[j];<br>            temp[j + 1] &#x3D; temp[j] &#x2F; 10 ;<br>            temp[j] &#x3D; temp[j] % 10;<br>        }<br>        if(temp[max] &gt; 0){<br>            max++;<br>        }<br>解题思路：<br>相当于动态规划 </p>]]></content>
+    <content type="html"><![CDATA[<p>题目：<br>楼梯有 N 阶，上楼可以一步上一阶，也可以一步上二阶。<br>编一个程序，计算共有多少种不同的走法。<br>输入格式 一个数字，楼梯数。<br>输出格式 输出走的方式总数。<br>输入输出样例<br>4       5</p><p>代码：<br>//36</p><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <bits/stdc++.h></h1><p>using namespace std;</p><p>int main(){<br>    //输入楼梯数量<br>    int n;<br>    scanf(“%d”,&amp;n);</p><pre><code>//特殊情况if(n == 1 || n == 2 ||n == 0)&#123;    cout&lt;&lt;n;    return 0;&#125; //计算方法数量 高精度加法 存储在string 转为int[] 相加到int[]去前导零 dp1变为dp1,之和变为dp1 string dp0 = &quot;1&quot;;string dp1 = &quot;2&quot;;for(int i = 2; i &lt; n; i++)&#123;    int a[5005] = &#123;0&#125;,b[5005] = &#123;0&#125;;    int temp[5005] = &#123;0&#125;;    for(int j = 0; j &lt; dp0.size(); j++)&#123;        a[dp0.size() - 1 - j] = dp0[j] - &#39;0&#39;;    &#125;    for(int j = 0; j &lt; dp1.size(); j++)&#123;        b[dp1.size() - 1 - j] = dp1[j] - &#39;0&#39;;    &#125;    int max = dp0.size() &gt; dp1.size() ? dp0.size() : dp1.size();    for(int j = 0; j &lt; max; j++)&#123;        temp[j] += a[j] + b[j];        temp[j + 1] = temp[j] / 10 ;        temp[j] = temp[j] % 10;    &#125;    if(temp[max] &gt; 0)&#123;        max++;    &#125;    dp0 = dp1;    dp1 = &quot;&quot;;    for(int j = max - 1; j &gt;= 0; j--)&#123;        dp1 += to_string(temp[j]);    &#125;&#125;cout&lt;&lt;dp1;</code></pre><p>}<br>错误点：<br>1.字符串初始化 用”” 而不是’’<br>2.字符串转数字 dp1 += to_string(temp[j]);<br>    错误写法: dp1[j] = to_string(temp[j]);错误原因：不能将string类型转为char类型<br>    to_string赋值的对象是字符串，而dp1[j]具体成了一个char类型的字符<br>3.题目数值范围未搞清楚 超出long long 范围 -2^63~2^63-1后就要进行高精度加法运算 long(int) -2^31~2^31-1<br>    1&gt;两个加数长度位置，用字符串类型存储<br>    2&gt;将加数逆序转换为数值存入数组<br>    3&gt;进行相加，存入整型数组（仍为逆序），注意最高位是否产生进位，若是，则数组长度要加一<br>        int a[5005] = {0},b[5005] = {0};<br>        int temp[5005] = {0};<br>        for(int j = 0; j &lt; dp0.size(); j++){<br>            a[dp0.size() - 1 - j] = dp0[j] - ‘0’;<br>        }<br>        for(int j = 0; j &lt; dp1.size(); j++){<br>            b[dp1.size() - 1 - j] = dp1[j] - ‘0’;<br>        }<br>        int max = dp0.size() &gt; dp1.size() ? dp0.size() : dp1.size();<br>        for(int j = 0; j &lt; max; j++){<br>            temp[j] += a[j] + b[j];<br>            temp[j + 1] = temp[j] / 10 ;<br>            temp[j] = temp[j] % 10;<br>        }<br>        if(temp[max] &gt; 0){<br>            max++;<br>        }<br>解题思路：<br>相当于动态规划 </p>]]></content>
     
     
       
       
     <summary type="html">&lt;p&gt;题目：&lt;br&gt;楼梯有 N 阶，上楼可以一步上一阶，也可以一步上二阶。&lt;br&gt;编一个程序，计算共有多少种不同的走法。&lt;br&gt;输入格式 一个数字，楼梯数。&lt;br&gt;输出格式 输出走的方式总数。&lt;br&gt;输入输出样例&lt;br&gt;4       5&lt;/p&gt;
-&lt;p&gt;代码：&lt;br&gt;&amp;#x2F;</summary>
+&lt;p&gt;代码：&lt;br&gt;//36&lt;/</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>1.小鱼比可爱</title>
+    <link href="http://example.com/posts/ad1413b6.html"/>
+    <id>http://example.com/posts/ad1413b6.html</id>
+    <published>2024-11-14T14:06:56.000Z</published>
+    <updated>2024-11-18T14:04:26.207Z</updated>
+    
+    <content type="html"><![CDATA[<p>题目：<br>人比人，气死人；鱼比鱼，难死鱼。小鱼最近参加了一个“比可爱”比赛，比的是每只鱼的可爱程度。参赛的鱼被从左到右排成一排，头都朝向左边，然后每只鱼会得到一个整数数值，表示这只鱼的可爱程度，很显然整数越大，表示这只鱼越可爱，而且任意两只鱼的可爱程度可能一样。由于所有的鱼头都朝向左边，所以每只鱼只能看见在它左边的鱼的可爱程度，它们心里都在计算，在自己的眼力范围内有多少只鱼不如自己可爱呢。请你帮这些可爱但是鱼脑不够用的小鱼们计算一下。<br>输入格式：<br>第一行输入一个正整数n，表示鱼的数目。</p><p>第二行内输入 n个正整数，用空格间隔，依次表示从左到右每只小鱼的可爱程度 </p><p>输入输出样例<br>6                   输出 0 0 0 3 1 2<br>4 3 0 5 1 2   </p><p>代码：</p><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <stdio.h></h1><p>int main(){<br>    int n;<br>    scanf(“%d”,&amp;n);<br>    int nums[n];<br>    int result[n];<br>    for(int i = 0; i &lt; n; i++){<br>        scanf(“%d”,&amp;nums[i]);<br>        int temp = 0;<br>        for(int j = 0; j &lt; i; j++){<br>            if(nums[i] &gt; nums[j]){<br>                temp++;<br>            }<br>        }<br>        result[i] = temp;<br>    }<br>    for(int i = 0; i &lt; n; i++){<br>        printf(“%d “,result[i]);<br>    }<br>    return 0;<br>}</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;题目：&lt;br&gt;人比人，气死人；鱼比鱼，难死鱼。小鱼最近参加了一个“比可爱”比赛，比的是每只鱼的可爱程度。参赛的鱼被从左到右排成一排，头都朝向左边，然后每只鱼会得到一个整数数值，表示这只鱼的可爱程度，很显然整数越大，表示这只鱼越可爱，而且任意两只鱼的可爱程度可能一样。由于所有</summary>
       
     
     
@@ -209,12 +315,13 @@
     <published>2024-11-06T14:06:56.000Z</published>
     <updated>2024-11-18T14:04:26.202Z</updated>
     
-    <content type="html"><![CDATA[<p>题目：<br><img src="/pic-%E6%B4%9B%E8%B0%B7%E5%AD%97%E7%AC%A6%E4%B8%B2/15.%E5%9E%82%E7%9B%B4%E6%9F%B1%E7%8A%B6%E5%9B%BE.png" alt="alt text"><br>题目：<br>#include &lt;bits&#x2F;stdc++.h&gt;<br>using namespace std;<br>&#x2F;<em>44</em>&#x2F;<br>int amount(int nums[],string s){<br>    &#x2F;<em>for(long i &#x3D; 0; i &lt; s.size();i++){ &#x2F;&#x2F;这种方式会报错<br>        nums[s[i] - ‘A’]++;<br>    }</em>&#x2F;</p><pre><code>for(long i=0;i&lt;s.length();i++)&#123; //这种不会    for(int j=0;j&lt;26;j++)&#123;        if(s[i]-65==j)&#123;            nums[j]++;        &#125;    &#125;&#125;return *nums; //!注意返回数组时在数组名前面加*</code></pre><p>}<br>int main(){<br>    &#x2F;&#x2F;读入四行字符串<br>    string s1,s2,s3,s4;<br>    getline(cin,s1);<br>    getline(cin,s2);<br>    getline(cin,s3);<br>    getline(cin,s4);</p><pre><code>//统计字母数量int nums[26] = &#123;0&#125;;amount(nums,s1);amount(nums,s2);amount(nums,s3);amount(nums,s4);//输出int max = 0;for(int i = 0; i &lt; 26; i++)&#123;    max = max &gt; nums[i] ? max : nums[i];&#125;for(int i = max; i &gt; 0; i--)&#123;    for(int j = 0; j &lt; 26; j++)&#123;        if(nums[j] &gt;= i)&#123;            printf(&quot;* &quot;);            nums[j]--;        &#125;        else&#123;            printf(&quot;  &quot;);        &#125;    &#125;    printf(&quot;\n&quot;);&#125;cout&lt;&lt;&quot;A B C D E F G H I J K L M N O P Q R S T U V W X Y Z&quot;;return 0;</code></pre><p>}</p>]]></content>
+    <content type="html"><![CDATA[<p>题目：<br><img src="pic-洛谷字符串/15.垂直柱状图.png" alt="alt text"><br>题目：</p><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <bits/stdc++.h></h1><p>using namespace std;<br>/<em>44</em>/<br>int amount(int nums[],string s){<br>    /<em>for(long i = 0; i &lt; s.size();i++){ //这种方式会报错<br>        nums[s[i] - ‘A’]++;<br>    }</em>/</p><pre><code>for(long i=0;i&lt;s.length();i++)&#123; //这种不会    for(int j=0;j&lt;26;j++)&#123;        if(s[i]-65==j)&#123;            nums[j]++;        &#125;    &#125;&#125;return *nums; //!注意返回数组时在数组名前面加*</code></pre><p>}<br>int main(){<br>    //读入四行字符串<br>    string s1,s2,s3,s4;<br>    getline(cin,s1);<br>    getline(cin,s2);<br>    getline(cin,s3);<br>    getline(cin,s4);</p><pre><code>//统计字母数量int nums[26] = &#123;0&#125;;amount(nums,s1);amount(nums,s2);amount(nums,s3);amount(nums,s4);//输出int max = 0;for(int i = 0; i &lt; 26; i++)&#123;    max = max &gt; nums[i] ? max : nums[i];&#125;for(int i = max; i &gt; 0; i--)&#123;    for(int j = 0; j &lt; 26; j++)&#123;        if(nums[j] &gt;= i)&#123;            printf(&quot;* &quot;);            nums[j]--;        &#125;        else&#123;            printf(&quot;  &quot;);        &#125;    &#125;    printf(&quot;\n&quot;);&#125;cout&lt;&lt;&quot;A B C D E F G H I J K L M N O P Q R S T U V W X Y Z&quot;;return 0;</code></pre><p>}</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;img src=&quot;/pic-%E6%B4%9B%E8%B0%B7%E5%AD%97%E7%AC%A6%E4%B8%B2/15.%E5%9E%82%E7%9B%B4%E6%9F%B1%E7%8A%B6%E5%9B%BE.png&quot; alt=&quot;alt text&quot;&gt;</summary>
+    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;img src=&quot;pic-洛谷字符串/15.垂直柱状图.png&quot; alt=&quot;alt text&quot;&gt;&lt;br&gt;题目：&lt;/p&gt;
+&lt;h1 id=&quot;include&quot;&gt;&lt;a href=&quot;#include&quot; class=&quot;headerlink&quot; title=&quot;include</summary>
       
     
     
@@ -229,12 +336,12 @@
     <published>2024-11-05T14:06:56.000Z</published>
     <updated>2024-11-18T14:04:26.228Z</updated>
     
-    <content type="html"><![CDATA[<p>题目：<br><img src="/pic-%E7%89%9B%E5%AE%A2/6.%E7%BA%A2%E5%92%8C%E8%93%9D.png" alt="alt text"><br>代码：</p>]]></content>
+    <content type="html"><![CDATA[<p>题目：<br><img src="pic-牛客/6.红和蓝.png" alt="alt text"><br>代码：</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;img src=&quot;/pic-%E7%89%9B%E5%AE%A2/6.%E7%BA%A2%E5%92%8C%E8%93%9D.png&quot; alt=&quot;alt text&quot;&gt;&lt;br&gt;代码：&lt;/p&gt;
+    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;img src=&quot;pic-牛客/6.红和蓝.png&quot; alt=&quot;alt text&quot;&gt;&lt;br&gt;代码：&lt;/p&gt;
 </summary>
       
     
@@ -250,12 +357,13 @@
     <published>2024-11-03T14:06:56.000Z</published>
     <updated>2024-11-18T14:04:26.197Z</updated>
     
-    <content type="html"><![CDATA[<p>题目：<br><img src="/pic-%E6%B4%9B%E8%B0%B7%E5%AD%97%E7%AC%A6%E4%B8%B2/14.%E8%AF%AD%E5%8F%A5%E8%A7%A3%E6%9E%90.png" alt="alt text"><br>代码：<br>c++<br>#include &lt;bits&#x2F;stdc++.h&gt;<br>using namespace std;<br>&#x2F;*</p><p>*&#x2F;<br>int main(){<br>    string s;<br>    getline(cin,s);<br>    map&lt;char,string&gt;q;<br>    q[‘a’] &#x3D; ‘0’;<br>    q[‘b’] &#x3D; ‘0’;<br>    q[‘c’] &#x3D; ‘0’;<br>    for(int i &#x3D; 0; i &lt;s.size(); i++){<br>        if(s[i] &#x3D;&#x3D; ‘&#x3D;’){<br>            if(s[i + 1] &lt; ‘0’ || s[i + 1] &gt; ‘9’){&#x2F;&#x2F;如果赋值的是变量 a:&#x3D;b<br>                q[s[i - 2]] &#x3D; q[s[i + 1]];<br>            }<br>            else{<br>                q[s[i - 2]] &#x3D; s[i + 1];<br>            }<br>        }<br>    }<br>    cout&lt;&lt;q[‘a’]&lt;&lt;” “&lt;&lt;q[‘b’]&lt;&lt;” “&lt;&lt;q[‘c’]&lt;&lt;endl;</p><pre><code>return 0;</code></pre><p>}<br>法二：<br>#include<cstdio><br>using namespace std;<br>int a[3];char s1,s2;<br>int main()<br>{<br>    while (scanf(“%c:&#x3D;%c;”,&amp;s1,&amp;s2)&#x3D;&#x3D;2)&#x2F;&#x2F;<br>     a[s1-‘a’]&#x3D;s2&gt;&#x3D;’0’ &amp;&amp; s2&lt;&#x3D;’9’ ? s2-‘0’ : a[s2-‘a’]; &#x2F;&#x2F;赋值语句简洁明了<br>    printf(“%d %d %d”,a[0],a[1],a[2]);<br>}</p><p>c语言<br>#include &lt;stdio.h&gt;<br>#include &lt;string.h&gt;</p><p>int main(){<br>    int a[3] &#x3D; {0};<br>    char s1,s2;<br>    while(scanf(“%c:&#x3D;%c;”,&amp;s1,&amp;s2) &#x3D;&#x3D; 2){<br>        a[s1 - ‘a’] &#x3D; s2 &gt;&#x3D; ‘0’ &amp;&amp; s2 &lt;&#x3D; ‘9’ ? s2 - ‘0’ : a[s2 - ‘a’];<br>    }<br>    printf(“%d %d %d”,a[0],a[1],a[2]);<br>    return 0;<br>}</p><p>知识点：<br>1.scanf(“%c:&#x3D;%c;”,&amp;s1,&amp;s2)&#x3D;&#x3D;2</p><p>这行代码的格式字符串 “%c:&#x3D;%c;” 包含以下几个部分：</p><p>%c：这是一个格式说明符，告诉 scanf 读取一个字符并将其存储在提供的地址（&amp;s1）。</p><p>:&#x3D;：这是普通的字符，scanf 会从输入中读取这两个字符，但不会将它们存储在任何地方。它们在这里的作用是确保输入中包含这两个字符。</p><p>%c：这是另一个格式说明符，告诉 scanf 读取一个字符并将其存储在提供的地址（&amp;s2）。</p><p>;：这是普通的字符，scanf 会从输入中读取这个字符，但不会将其存储在任何地方。它在这里的作用是确保输入以分号结束。</p><p>scanf 函数返回成功匹配的输入项的数量。在这个例子中，格式字符串期望两个字符（由 %c 指定），所以如果输入正确，scanf 应该返回 2。这个返回值然后与 2 进行比较，以确保两个字符都已成功读取。</p>]]></content>
+    <content type="html"><![CDATA[<p>题目：<br><img src="pic-洛谷字符串/14.语句解析.png" alt="alt text"><br>代码：<br>c++</p><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <bits/stdc++.h></h1><p>using namespace std;<br>/*</p><p>*/<br>int main(){<br>    string s;<br>    getline(cin,s);<br>    map<char,string>q;<br>    q[‘a’] = ‘0’;<br>    q[‘b’] = ‘0’;<br>    q[‘c’] = ‘0’;<br>    for(int i = 0; i <s.size(); i++){        if(s[i] == '='){            if(s[i + 1] < '0' || s[i + 1] > ‘9’){//如果赋值的是变量 a:=b<br>                q[s[i - 2]] = q[s[i + 1]];<br>            }<br>            else{<br>                q[s[i - 2]] = s[i + 1];<br>            }<br>        }<br>    }<br>    cout&lt;&lt;q[‘a’]&lt;&lt;” “&lt;&lt;q[‘b’]&lt;&lt;” “&lt;&lt;q[‘c’]&lt;&lt;endl;</p><pre><code>return 0;</code></pre><p>}<br>法二：</p><h1 id="include-1"><a href="#include-1" class="headerlink" title="include"></a>include<cstdio></h1><p>using namespace std;<br>int a[3];char s1,s2;<br>int main()<br>{<br>    while (scanf(“%c:=%c;”,&amp;s1,&amp;s2)==2)//<br>     a[s1-‘a’]=s2&gt;=’0’ &amp;&amp; s2&lt;=’9’ ? s2-‘0’ : a[s2-‘a’]; //赋值语句简洁明了<br>    printf(“%d %d %d”,a[0],a[1],a[2]);<br>}</p><p>c语言</p><h1 id="include-2"><a href="#include-2" class="headerlink" title="include "></a>include <stdio.h></h1><h1 id="include-3"><a href="#include-3" class="headerlink" title="include "></a>include <string.h></h1><p>int main(){<br>    int a[3] = {0};<br>    char s1,s2;<br>    while(scanf(“%c:=%c;”,&amp;s1,&amp;s2) == 2){<br>        a[s1 - ‘a’] = s2 &gt;= ‘0’ &amp;&amp; s2 &lt;= ‘9’ ? s2 - ‘0’ : a[s2 - ‘a’];<br>    }<br>    printf(“%d %d %d”,a[0],a[1],a[2]);<br>    return 0;<br>}</p><p>知识点：<br>1.scanf(“%c:=%c;”,&amp;s1,&amp;s2)==2</p><p>这行代码的格式字符串 “%c:=%c;” 包含以下几个部分：</p><p>%c：这是一个格式说明符，告诉 scanf 读取一个字符并将其存储在提供的地址（&amp;s1）。</p><p>:=：这是普通的字符，scanf 会从输入中读取这两个字符，但不会将它们存储在任何地方。它们在这里的作用是确保输入中包含这两个字符。</p><p>%c：这是另一个格式说明符，告诉 scanf 读取一个字符并将其存储在提供的地址（&amp;s2）。</p><p>;：这是普通的字符，scanf 会从输入中读取这个字符，但不会将其存储在任何地方。它在这里的作用是确保输入以分号结束。</p><p>scanf 函数返回成功匹配的输入项的数量。在这个例子中，格式字符串期望两个字符（由 %c 指定），所以如果输入正确，scanf 应该返回 2。这个返回值然后与 2 进行比较，以确保两个字符都已成功读取。</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;img src=&quot;/pic-%E6%B4%9B%E8%B0%B7%E5%AD%97%E7%AC%A6%E4%B8%B2/14.%E8%AF%AD%E5%8F%A5%E8%A7%A3%E6%9E%90.png&quot; alt=&quot;alt text&quot;&gt;&lt;br&gt;代码：&lt;b</summary>
+    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;img src=&quot;pic-洛谷字符串/14.语句解析.png&quot; alt=&quot;alt text&quot;&gt;&lt;br&gt;代码：&lt;br&gt;c++&lt;/p&gt;
+&lt;h1 id=&quot;include&quot;&gt;&lt;a href=&quot;#include&quot; class=&quot;headerlink&quot; title=&quot;i</summary>
       
     
     
@@ -270,12 +378,13 @@
     <published>2024-11-01T14:06:56.000Z</published>
     <updated>2024-11-14T12:09:10.533Z</updated>
     
-    <content type="html"><![CDATA[<p>题目：<br><a href="13.%E4%BD%A0%E7%9A%84%E9%A3%9E%E7%A2%9F%E5%9C%A8%E8%BF%99%E5%84%BF%20Your%20Ride%20Is%20Here.md">text</a><br>代码：<br>c++<br>#include &lt;bits&#x2F;stdc++.h&gt;<br>using namespace std;</p><p>int data(string s){<br>    int num &#x3D; 1;<br>    for(int i &#x3D; 0; i &lt; s.size(); i++){<br>        num &#x3D; num * (s[i] - ‘A’ + 1);<br>    }<br>    return num;<br>}</p><p>int main(){<br>    string s1;<br>    string s2;<br>    cin&gt;&gt;s1&gt;&gt;s2;</p><pre><code>int num1 = data(s1);//彗星 int num2 = data(s2);//小组 if(num2 % 47 == num1 %47)&#123;    cout&lt;&lt;&quot;GO&quot;;&#125;else cout&lt;&lt;&quot;STAY&quot;;return 0;</code></pre><p>}</p><p>c<br>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;</p><p>int data(char s[]){<br>    int num &#x3D; 1;<br>    for(int i &#x3D; 0; s[i] !&#x3D; ‘\0’; i++){ &#x2F;&#x2F;知识点2<br>        num &#x3D; num * (s[i] - ‘A’ + 1);<br>    }<br>    return num;<br>}</p><p>int main(){<br>    char s1[100];  &#x2F;&#x2F;知识点1<br>    char s2[100];</p><pre><code>scanf(&quot;%s %s&quot;,s1,s2);int num1 = data(s1);int num2 = data(s2);if(num2 % 47 == num1 % 47)&#123;    printf(&quot;GO&quot;);&#125;else printf(&quot;STAY&quot;);return 0;</code></pre><p>}</p><p>知识点：</p><ol><li>c语言 虽然char a[] 每个元素只能存储一个字符，但是可以多位输入<br>2.for(int i &#x3D; 0; s[i] !&#x3D; ‘\0’; i++) 遍历char数组，用’\0’来判断结束</li></ol>]]></content>
+    <content type="html"><![CDATA[<p>题目：<br><a href="13.你的飞碟在这儿 Your Ride Is Here.md">text</a><br>代码：<br>c++</p><h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <bits/stdc++.h></h1><p>using namespace std;</p><p>int data(string s){<br>    int num = 1;<br>    for(int i = 0; i &lt; s.size(); i++){<br>        num = num * (s[i] - ‘A’ + 1);<br>    }<br>    return num;<br>}</p><p>int main(){<br>    string s1;<br>    string s2;<br>    cin&gt;&gt;s1&gt;&gt;s2;</p><pre><code>int num1 = data(s1);//彗星 int num2 = data(s2);//小组 if(num2 % 47 == num1 %47)&#123;    cout&lt;&lt;&quot;GO&quot;;&#125;else cout&lt;&lt;&quot;STAY&quot;;return 0;</code></pre><p>}</p><p>c</p><h1 id="include-1"><a href="#include-1" class="headerlink" title="include "></a>include <stdio.h></h1><h1 id="include-2"><a href="#include-2" class="headerlink" title="include "></a>include <stdlib.h></h1><p>int data(char s[]){<br>    int num = 1;<br>    for(int i = 0; s[i] != ‘\0’; i++){ //知识点2<br>        num = num * (s[i] - ‘A’ + 1);<br>    }<br>    return num;<br>}</p><p>int main(){<br>    char s1[100];  //知识点1<br>    char s2[100];</p><pre><code>scanf(&quot;%s %s&quot;,s1,s2);int num1 = data(s1);int num2 = data(s2);if(num2 % 47 == num1 % 47)&#123;    printf(&quot;GO&quot;);&#125;else printf(&quot;STAY&quot;);return 0;</code></pre><p>}</p><p>知识点：</p><ol><li>c语言 虽然char a[] 每个元素只能存储一个字符，但是可以多位输入<br>2.for(int i = 0; s[i] != ‘\0’; i++) 遍历char数组，用’\0’来判断结束</li></ol>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;a href=&quot;13.%E4%BD%A0%E7%9A%84%E9%A3%9E%E7%A2%9F%E5%9C%A8%E8%BF%99%E5%84%BF%20Your%20Ride%20Is%20Here.md&quot;&gt;text&lt;/a&gt;&lt;br&gt;代码：&lt;br&gt;c++&lt;b</summary>
+    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;a href=&quot;13.你的飞碟在这儿 Your Ride Is Here.md&quot;&gt;text&lt;/a&gt;&lt;br&gt;代码：&lt;br&gt;c++&lt;/p&gt;
+&lt;h1 id=&quot;include&quot;&gt;&lt;a href=&quot;#include&quot; class=&quot;headerlink&quot; title=</summary>
       
     
     
@@ -290,7 +399,7 @@
     <published>2024-10-31T12:03:50.394Z</published>
     <updated>2024-11-18T14:04:26.194Z</updated>
     
-    <content type="html"><![CDATA[<p>埃拉托斯特尼筛法（Sieve of Eratosthenes）:<br>1.目的：用于找出一定范围内所有质数的算法<br>2.基本思想：从小到大逐个筛选数，将合数（非质数）标记掉，最终剩下的即为质数。<br>3.详细解释：</p><p>1&gt;初始化：<br>创建一个长度为n+1的布尔数组（通常称为isPrime或prime），初始值全部设置为true，表示所有数都是质数。<br>筛选过程：</p><p>2&gt;从2开始，将第一个质数2标记为质数（true），然后将2的所有倍数标记为非质数（false）。<br>然后找到下一个未被标记的数，即下一个质数3，将其标记为质数，然后将3的所有倍数标记为非质数。<br>依次类推，直到遍历完所有小于等于n的数。</p><p>3&gt;筛选规则：<br>对于每个质数p，将其所有大于等于p^2且小于等于n的倍数标记为非质数。<br>这是因为：<br>1.如果一个数 x 是质数 p 的倍数，并且 x &lt; p * p，那么 x 可以表示为 x &#x3D; p * k，其中 k 是一个小于 p 的数。<br>2.在之前处理质数 k 时，已经标记过 k 的所有倍数，包括 p * k。<br>3.因此，p * k 已经在处理 k 时被标记为非质数，而且 k &lt; p，所以 p * k &lt; p * p。<br>4.因此，在处理质数 p 时，小于 p * p 的 p 的倍数已经被标记过了，不需要再次标记。<br>eg: i &#x3D; 2 标记 4 6 8…<br>    i &#x3D; 3 从9开始 因为 2*3 &#x3D; 6 在遍历2的时候就已经遍历了<br>    换言之，一个数的因子，除了根号外 一定一个大一个小，在求倍数的时候，从小的开始遍历，再到大的时候就标记从以这个数作为小因数开始的倍数即可</p><p>4&gt;结果提取：<br>最终留下的isPrime[i]为true的数i即为质数。</p><p>4.复杂度：<br>埃拉托斯特尼筛法的时间复杂度为O(n log log n)，其中n为要筛选的范围内的数的个数。</p><p>这种算法的优点在于简单易懂，且在一定范围内找质数的效率很高。然而，对于大范围内的质数筛选，其他更高效的算法可能更合适。</p><p>代码：<br>const int MAX &#x3D; 1000005;<br>bool prime[MAX];<br>void init() {<br>    memset(prime,true,sizeof prime); &#x2F;&#x2F;知识点<br>    for(int i&#x3D;2; i<em>i&lt;MAX; i++) { &#x2F;&#x2F;目的是标记倍数，当以i为小因数开始的倍数以及大于范围时，就没有标记的范围了 换言之，i就是最大的因数<br>        if(prime[i]) {&#x2F;&#x2F;是素数<br>            for(int j&#x3D;i</em>2; j&lt;MAX; j+&#x3D;i)&#x2F;&#x2F;从2倍开始，n倍<br>                prime[j]&#x3D;false;&#x2F;&#x2F;各个倍数<br>        }<br>    }<br>}</p><p>解释：为什么i*i&lt;MAX;<br>在埃拉托斯特尼筛法中，当我们处理质数 p 时，我们只需要标记 p 的倍数，其中 p 的平方小于或等于 n。这是因为如果 p 的平方大于 n，那么 p 的倍数已经超出了我们要筛选的范围，不需要再标记这些倍数。</p><p>举个例子：</p><p>假设我们要找出小于等于 30 的所有质数：</p><p>当处理质数 2 时，我们从 2 的平方开始标记倍数，即从 4 开始。因为 2 的平方是 4，小于等于 30，所以我们需要标记 2 的倍数。<br>当处理质数 3 时，我们从 3 的平方开始标记倍数，即从 9 开始。因为 3 的平方是 9，小于等于 30，所以我们需要标记 3 的倍数。<br>当处理质数 5 时，我们从 5 的平方开始标记倍数，即从 25 开始。因为 5 的平方是 25，小于等于 30，所以我们需要标记 5 的倍数。<br>如果我们考虑一个更大的质数，比如 7，7 的平方是 49，大于 30，这意味着 7 的倍数已经超出了我们要筛选的范围，因此不需要再标记 7 的倍数。<br>因此，为了确保我们在筛选范围内正确地标记质数的倍数，我们需要保证 p 的平方小于或等于我们要筛选的最大值 n。</p><p>知识点：<br>一.memset()函数<br>1.作用：用于将一块内存空间的每个字节都设置为指定的值<br>2.用法：memset(初始地址,要设的值,类型长度) eg:memset(prime,true,sizeof prime);</p><p>注意点：在C++中，memset函数经常用来初始化整型数组、字符数组或其他基本数据类型的数组。但对于非整型数据类型，如bool类型，使用memset可能会导致一些问题，因为bool类型在C++中并不是一个字节大小的数据类型，而是一个字节中的某一位。因此，对于bool类型数组，最好使用循环或其他方法显式地设置每个元素的值。<br>3.头文件：<cstring></p><p>扩展：std::fill 函数<br>1.作用：是 C++ 标准库中的一个函数模板，它用于将指定的值赋给一个容器或数组的特定范围内的所有元素<br>2.头文件：<algorith><br>3.用法：<br>eg:vector<int> vec(5);<br>    fill(vec.begin(), vec.end(), -1); &#x2F;&#x2F; 将 vector 中的每个元素都设置为 -1</p><p>fill()函数和memset()函数的区别<br>1.std::fill<br>是 C++ 标准库中的一个模板函数，定义在 <algorithm> 头文件中。<br>可以用于任何类型的容器，包括数组、std::vector、std::list、std::array 等。<br>可以填充任何类型的值，不仅仅是字节值。<br>需要两个迭代器参数来指定要填充的元素范围。<br>安全性更高，因为它基于类型，编译器会检查类型匹配，减少类型错误的风险。<br>2.memset<br>是 C 语言标准库中的一个函数，定义在 <cstring> 头文件中。<br>通常用于填充字节序列，适用于简单的数据类型（如 char、unsigned char 等）。<br>不能用于填充复杂数据类型，因为它只处理字节级别的赋值。<br>只需要一个指针参数指向要填充的内存块的开始位置，以及要设置的值和要填充的字节数。<br>效率可能更高，因为它直接操作内存，不涉及迭代器的解引用和递增操作。</p><p>二.i++和++i的区别<br>++i：返回 i 增加 1 后的值<br>i++：返回 i 增加 1 之前的值<br>eg:<br>i  &#x3D; 1;<br>int a &#x3D; ++i;  &#x2F;&#x2F; i 现在是 2，a 是 2</p><p>i  &#x3D; 1;<br>int b &#x3D; i++;  &#x2F;&#x2F; i 现在是 2，但 b 是 1</p>]]></content>
+    <content type="html"><![CDATA[<p>埃拉托斯特尼筛法（Sieve of Eratosthenes）:<br>1.目的：用于找出一定范围内所有质数的算法<br>2.基本思想：从小到大逐个筛选数，将合数（非质数）标记掉，最终剩下的即为质数。<br>3.详细解释：</p><p>1&gt;初始化：<br>创建一个长度为n+1的布尔数组（通常称为isPrime或prime），初始值全部设置为true，表示所有数都是质数。<br>筛选过程：</p><p>2&gt;从2开始，将第一个质数2标记为质数（true），然后将2的所有倍数标记为非质数（false）。<br>然后找到下一个未被标记的数，即下一个质数3，将其标记为质数，然后将3的所有倍数标记为非质数。<br>依次类推，直到遍历完所有小于等于n的数。</p><p>3&gt;筛选规则：<br>对于每个质数p，将其所有大于等于p^2且小于等于n的倍数标记为非质数。<br>这是因为：<br>1.如果一个数 x 是质数 p 的倍数，并且 x &lt; p <em> p，那么 x 可以表示为 x = p </em> k，其中 k 是一个小于 p 的数。<br>2.在之前处理质数 k 时，已经标记过 k 的所有倍数，包括 p <em> k。<br>3.因此，p </em> k 已经在处理 k 时被标记为非质数，而且 k &lt; p，所以 p <em> k &lt; p </em> p。<br>4.因此，在处理质数 p 时，小于 p <em> p 的 p 的倍数已经被标记过了，不需要再次标记。<br>eg: i = 2 标记 4 6 8…<br>    i = 3 从9开始 因为 2</em>3 = 6 在遍历2的时候就已经遍历了<br>    换言之，一个数的因子，除了根号外 一定一个大一个小，在求倍数的时候，从小的开始遍历，再到大的时候就标记从以这个数作为小因数开始的倍数即可</p><p>4&gt;结果提取：<br>最终留下的isPrime[i]为true的数i即为质数。</p><p>4.复杂度：<br>埃拉托斯特尼筛法的时间复杂度为O(n log log n)，其中n为要筛选的范围内的数的个数。</p><p>这种算法的优点在于简单易懂，且在一定范围内找质数的效率很高。然而，对于大范围内的质数筛选，其他更高效的算法可能更合适。</p><p>代码：<br>const int MAX = 1000005;<br>bool prime[MAX];<br>void init() {<br>    memset(prime,true,sizeof prime); //知识点<br>    for(int i=2; i<em>i&lt;MAX; i++) { //目的是标记倍数，当以i为小因数开始的倍数以及大于范围时，就没有标记的范围了 换言之，i就是最大的因数<br>        if(prime[i]) {//是素数<br>            for(int j=i</em>2; j&lt;MAX; j+=i)//从2倍开始，n倍<br>                prime[j]=false;//各个倍数<br>        }<br>    }<br>}</p><p>解释：为什么i*i&lt;MAX;<br>在埃拉托斯特尼筛法中，当我们处理质数 p 时，我们只需要标记 p 的倍数，其中 p 的平方小于或等于 n。这是因为如果 p 的平方大于 n，那么 p 的倍数已经超出了我们要筛选的范围，不需要再标记这些倍数。</p><p>举个例子：</p><p>假设我们要找出小于等于 30 的所有质数：</p><p>当处理质数 2 时，我们从 2 的平方开始标记倍数，即从 4 开始。因为 2 的平方是 4，小于等于 30，所以我们需要标记 2 的倍数。<br>当处理质数 3 时，我们从 3 的平方开始标记倍数，即从 9 开始。因为 3 的平方是 9，小于等于 30，所以我们需要标记 3 的倍数。<br>当处理质数 5 时，我们从 5 的平方开始标记倍数，即从 25 开始。因为 5 的平方是 25，小于等于 30，所以我们需要标记 5 的倍数。<br>如果我们考虑一个更大的质数，比如 7，7 的平方是 49，大于 30，这意味着 7 的倍数已经超出了我们要筛选的范围，因此不需要再标记 7 的倍数。<br>因此，为了确保我们在筛选范围内正确地标记质数的倍数，我们需要保证 p 的平方小于或等于我们要筛选的最大值 n。</p><p>知识点：<br>一.memset()函数<br>1.作用：用于将一块内存空间的每个字节都设置为指定的值<br>2.用法：memset(初始地址,要设的值,类型长度) eg:memset(prime,true,sizeof prime);</p><p>注意点：在C++中，memset函数经常用来初始化整型数组、字符数组或其他基本数据类型的数组。但对于非整型数据类型，如bool类型，使用memset可能会导致一些问题，因为bool类型在C++中并不是一个字节大小的数据类型，而是一个字节中的某一位。因此，对于bool类型数组，最好使用循环或其他方法显式地设置每个元素的值。<br>3.头文件：<cstring></p><p>扩展：std::fill 函数<br>1.作用：是 C++ 标准库中的一个函数模板，它用于将指定的值赋给一个容器或数组的特定范围内的所有元素<br>2.头文件：<algorith><br>3.用法：<br>eg:vector<int> vec(5);<br>    fill(vec.begin(), vec.end(), -1); // 将 vector 中的每个元素都设置为 -1</p><p>fill()函数和memset()函数的区别<br>1.std::fill<br>是 C++ 标准库中的一个模板函数，定义在 <algorithm> 头文件中。<br>可以用于任何类型的容器，包括数组、std::vector、std::list、std::array 等。<br>可以填充任何类型的值，不仅仅是字节值。<br>需要两个迭代器参数来指定要填充的元素范围。<br>安全性更高，因为它基于类型，编译器会检查类型匹配，减少类型错误的风险。<br>2.memset<br>是 C 语言标准库中的一个函数，定义在 <cstring> 头文件中。<br>通常用于填充字节序列，适用于简单的数据类型（如 char、unsigned char 等）。<br>不能用于填充复杂数据类型，因为它只处理字节级别的赋值。<br>只需要一个指针参数指向要填充的内存块的开始位置，以及要设置的值和要填充的字节数。<br>效率可能更高，因为它直接操作内存，不涉及迭代器的解引用和递增操作。</p><p>二.i++和++i的区别<br>++i：返回 i 增加 1 后的值<br>i++：返回 i 增加 1 之前的值<br>eg:<br>i  = 1;<br>int a = ++i;  // i 现在是 2，a 是 2</p><p>i  = 1;<br>int b = i++;  // i 现在是 2，但 b 是 1</p>]]></content>
     
     
       
@@ -311,112 +420,12 @@
     <published>2024-10-30T12:49:11.985Z</published>
     <updated>2024-11-21T13:15:08.628Z</updated>
     
-    <content type="html"><![CDATA[<p>引入：<br>递归代码模板：<br>1.先写出口<br>2.再写普通相同情况<br>eg: 斐波那契数列 1 2 5 8 13…<br>int fibo(int a){<br>    if(a &#x3D;&#x3D; 0 || a &#x3D;&#x3D; 1){  &#x2F;&#x2F;先写出口<br>        return 1;<br>    }<br>    else{<br>        return fibo(a - 1) + fibo( a - 2);<br>    }<br>}<br>思考是否具有递归特性：<br>1&gt;思考普遍情况<br>1.当为极端情况时(自下而上 最”下”的情况)的情况 eg:跳台阶，只有一个台阶<br>2.当为极端条件 + 1 时的情况 eg:跳台阶，有两个台阶<br>3. …<br>2&gt;<br>推及到n时，(n - 1)对n的情况，是否只要知道了(n - 1),或(n - 2)等等以此类推 就能根据普遍情况得到n</p><p>换言之，即 想要得到n的结果，是否需要得到(n - 1&#x2F;2&#x2F;3&#x2F;..)的结果</p><p>DFS–深度优先算法<br>大概思路：不撞南墙不回头 依次走完所有路<br>eg：<br>5. kotori和素因子（A组，B组）<br>void dfs(int d,int sum){&#x2F;&#x2F;重点<br>    if(d &#x3D;&#x3D; n){&#x2F;&#x2F;先写退出条件–深度达到最大值<br>        ans &#x3D; min(ans,sum);<br>        return;<br>    }<br>    for(int i &#x3D; 0; i &lt; v[d].size(); i++){&#x2F;&#x2F;从最底层开始，一次选一个值<br>        if(!vis[v[d][i]]){<br>            vis[v[d][i]] &#x3D; 1;&#x2F;&#x2F;标记该值，表已经被用过<br>            dfs(d + 1, sum + v[d][i]); &#x2F;&#x2F;选完一个换下一个<br>            vis[v[d][i]] &#x3D; 0; &#x2F;&#x2F;上一个选完后回头，换一个路，将之前标记过的值还原<br>        }<br>    }<br>}</p><p>简单想法：<br>画树状图<br>最底层即为出口 返回的是具体值<br>其余的都是从上返回下面的递归式<br>long long dfs(int k,int n){&#x2F;&#x2F;栈内0 栈外n<br>    if(dp[k][n]){<br>        return dp[k][n];<br>    }<br>    if(n &#x3D;&#x3D; 0){&#x2F;&#x2F;栈外没有元素 值为1 出口<br>        return 1;<br>    }<br>    if(k &#x3D;&#x3D; 0){&#x2F;&#x2F;栈内没有元素<br>        return  dfs(k+1,n-1);<br>    }<br>    return dfs(k+1,n-1) + dfs(k-1,n);</p><p>}</p>]]></content>
+    <content type="html"><![CDATA[<p>引入：<br>递归代码模板：<br>1.先写出口<br>2.再写普通相同情况<br>eg: 斐波那契数列 1 2 5 8 13…<br>int fibo(int a){<br>    if(a == 0 || a == 1){  //先写出口<br>        return 1;<br>    }<br>    else{<br>        return fibo(a - 1) + fibo( a - 2);<br>    }<br>}<br>思考是否具有递归特性：<br>1&gt;思考普遍情况<br>1.当为极端情况时(自下而上 最”下”的情况)的情况 eg:跳台阶，只有一个台阶<br>2.当为极端条件 + 1 时的情况 eg:跳台阶，有两个台阶</p><ol><li>…<br>2&gt;<br>推及到n时，(n - 1)对n的情况，是否只要知道了(n - 1),或(n - 2)等等以此类推 就能根据普遍情况得到n</li></ol><p>换言之，即 想要得到n的结果，是否需要得到(n - 1/2/3/..)的结果</p><p>DFS—深度优先算法<br>大概思路：不撞南墙不回头 依次走完所有路<br>eg：</p><ol><li>kotori和素因子（A组，B组）<br>void dfs(int d,int sum){//重点<br> if(d == n){//先写退出条件—深度达到最大值<pre><code> ans = min(ans,sum); return;</code></pre> }<br> for(int i = 0; i &lt; v[d].size(); i++){//从最底层开始，一次选一个值<pre><code> if(!vis[v[d][i]])&#123;     vis[v[d][i]] = 1;//标记该值，表已经被用过     dfs(d + 1, sum + v[d][i]); //选完一个换下一个     vis[v[d][i]] = 0; //上一个选完后回头，换一个路，将之前标记过的值还原 &#125;</code></pre> }<br>}</li></ol><p>简单想法：<br>画树状图<br>最底层即为出口 返回的是具体值<br>其余的都是从上返回下面的递归式<br>long long dfs(int k,int n){//栈内0 栈外n<br>    if(dp[k][n]){<br>        return dp[k][n];<br>    }<br>    if(n == 0){//栈外没有元素 值为1 出口<br>        return 1;<br>    }<br>    if(k == 0){//栈内没有元素<br>        return  dfs(k+1,n-1);<br>    }<br>    return dfs(k+1,n-1) + dfs(k-1,n);</p><p>}</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;引入：&lt;br&gt;递归代码模板：&lt;br&gt;1.先写出口&lt;br&gt;2.再写普通相同情况&lt;br&gt;eg: 斐波那契数列 1 2 5 8 13…&lt;br&gt;int fibo(int a){&lt;br&gt;    if(a &amp;#x3D;&amp;#x3D; 0 || a &amp;#x3D;&amp;#x3D; 1){  &amp;#</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>02-KMP算法</title>
-    <link href="http://example.com/posts/777cdf84.html"/>
-    <id>http://example.com/posts/777cdf84.html</id>
-    <published>2024-10-28T14:06:56.000Z</published>
-    <updated>2024-11-01T12:47:14.076Z</updated>
-    
-    <content type="html"><![CDATA[<p>目的：在一个字符串中找一个字串<br>朴素暴力解法：<br>在主串中挨个找，匹配返回位置，不匹配回到下一个位置<br>问题：例如前面以及匹配过ab的组合，子串中也有ab,那么可以直接比较子串ab后面的字符和主串ab后面的字符,否则在挨个比较就重复了<br>故而提出<br>KMP算法：<br>1.需要得到前缀表 next[]数组<br>eg:设子串T&#x3D;“aabaaf”，求T的前缀表 即next数组<br>1&gt;第一个子串 t0&#x3D;“a”，没有前缀也没有后缀 next[0]&#x3D;0<br>2&gt;第二个子串 t1&#x3D;“aa”，前缀为”a”，后缀也为”a” next[1]&#x3D;1<br>3&gt;第三个子串 t2&#x3D;“aab”，该子串后缀中一定会有”b”，前缀中一定不含有”b”，没有相等的前后缀 next[2]&#x3D;0<br>4&gt;第四个子串 t3&#x3D;“aaba”，最大相等前后缀为”a”，长度为1，next[3]&#x3D;1<br>5&gt;第五个子串 t4&#x3D;“aabaa”，最大相等前后缀为”aa”，长度为2，next[4]&#x3D;2<br>6&gt;第六个子串是t5&#x3D;“aabaaf”，该子串的后缀中一定会有”f”，前缀中一定不含有”f”，则其没有相等的前后缀 next[5]&#x3D;0</p><p>next[]数组的作用：到主串的j,子串的i 不匹配时，查next[j] &#x3D; x 则子串的i回退到x这个位置(x表示比配过的相同前缀的下一个字符)</p><p>代码：<br>#include &lt;bits&#x2F;stdc++.h&gt;<br>#include <string><br>using namespace std;</p><p>int nextArr[100] &#x3D; {0}; </p><p>&#x2F;*<br>求字符串s每一个子串的最长相等前后缀的长度<br> i的每一次自增，代表的就是s的一个子串<br> 同时 i 也表示该子串的后缀结尾位置<br>  j &#x3D; 0开始，j表示子串前缀结尾位置 即next[i]的值 此时j的位置不代表子串的末尾的前一个位置，而代表的是上一个子串相等前后缀的末尾位置的下一个字符<br>  前后缀相等，意味着长度，字符均相同，从结尾开始比较，只要不相同,后缀结尾不变，前缀结尾改变<br>  子串只有一个字符时，无前后缀，预先设置next[0] &#x3D;&#x3D; 0<br>  从i&#x3D;1 j&#x3D;0开始（即从两个字符开始判断）<br>  判断s[j]  s[i]是否相等   不等j 依旧等于0 记录此时next[i] &#x3D; j  相等j++ 指向等前后缀的末尾位置的下一个字符<br>  后期子串增加，判断s[j]  s[i]是否相等<br>  不等，意味着 之前的前缀的下一个字符现在字符后缀最后一个不限等，则跳转到上一个next[],即next[j - 1]<br>  因为之前的前缀是现在子串前缀的子集，若是之前匹配过。没有必要在匹配一次，直接判断后缀增结尾符改变后</p><p>*&#x2F;</p><p>void Next(string s) {  &#x2F;&#x2F;求next数组<br>    int n &#x3D; s.size();<br>    int j &#x3D; 0;<br>    for (int i &#x3D; 1; i &lt; n; i++) {<br>        while (j &gt; 0 &amp;&amp; s[j] !&#x3D; s[i]) {<br>            j &#x3D; nextArr[j - 1];<br>        }<br>        if (s[j] &#x3D;&#x3D; s[i]) j++;<br>        nextArr[i] &#x3D; j;<br>    }<br>}<br>&#x2F;&#x2F;kmp匹配<br>bool kmp(int next[], string str, string s) {<br>    int j &#x3D; 0;<br>    int n &#x3D; s.size();<br>    for (int i &#x3D; 0; i &lt; str.size(); i++) {<br>        while (j &gt; 0 &amp;&amp; str[i] !&#x3D; s[j]) {<br>            j &#x3D; next[j - 1];<br>        }<br>        if (str[i] &#x3D;&#x3D; s[j]) j++;<br>        if (j &#x3D;&#x3D; n) {<br>            return true;<br>        }<br>    }<br>    return false;<br>}</p><p>int main() {<br>    string str, s;<br>    cin &gt;&gt; str &gt;&gt; s;<br>    Next(s);<br>    if (kmp(nextArr, str, s)) {<br>        cout &lt;&lt; s &lt;&lt; “是” &lt;&lt; str &lt;&lt; “的子串” &lt;&lt; endl;<br>    } else {<br>        cout &lt;&lt; s &lt;&lt; “不是” &lt;&lt; str &lt;&lt; “的子串” &lt;&lt; endl;<br>    }<br>    return 0;<br>}</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;目的：在一个字符串中找一个字串&lt;br&gt;朴素暴力解法：&lt;br&gt;在主串中挨个找，匹配返回位置，不匹配回到下一个位置&lt;br&gt;问题：例如前面以及匹配过ab的组合，子串中也有ab,那么可以直接比较子串ab后面的字符和主串ab后面的字符,否则在挨个比较就重复了&lt;br&gt;故而提出&lt;br&gt;K</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>数组入门</title>
-    <link href="http://example.com/posts/777cdf84.html"/>
-    <id>http://example.com/posts/777cdf84.html</id>
-    <published>2024-10-24T14:06:56.000Z</published>
-    <updated>2024-11-01T12:46:25.721Z</updated>
-    
-    <content type="html"><![CDATA[<p>一.c++ –动态数组 std::vector (用using … std; std省略)<br>1.作用：封装了可以改变大小的数组，使其成为存储和管理动态数据集合的首选方式<br>2.用法： vector&lt;元素类型&gt;变量名;<br>3.常用操作：<br>1&gt;初始化<br>vector<int> v; &#x2F;&#x2F; 创建一个空的 int 类型的 vector<br>vector<int> v(5, 10); &#x2F;&#x2F; 创建一个包含 5 个元素的 vector，每个元素初始化为 10<br>vector<int> v &#x3D; {1, 2, 3, 4, 5}; &#x2F;&#x2F; 使用列表初始化<br>2&gt;添加元素(插入元素)<br>v.push_back(10); &#x2F;&#x2F; 在 vector 的末尾添加一个元素<br>v.insert(v.begin(), 20); &#x2F;&#x2F; 在 vector 的开头插入一个元素<br>3&gt;访问元素<br>int first &#x3D; v.front(); &#x2F;&#x2F; 获取 vector 的第一个元素<br>int last &#x3D; v.back(); &#x2F;&#x2F; 获取 vector 的最后一个元素<br>int element &#x3D; v[3]; &#x2F;&#x2F; 获取索引为 3 的元素<br>4&gt;删除元素<br>v.pop_back(); &#x2F;&#x2F; 删除 vector 的最后一个元素<br>v.erase(v.begin() + 2); &#x2F;&#x2F; 删除索引为 2 的元素<br>v.clear(); &#x2F;&#x2F; 删除 vector 中的所有元素<br>5&gt;大小和容量<br>size_t size &#x3D; v.size(); &#x2F;&#x2F; 获取 vector 中的元素数量<br>size_t capacity &#x3D; v.capacity(); &#x2F;&#x2F; 获取 vector 的当前容量<br>v.resize(10); &#x2F;&#x2F; 改变 vector 的大小为 10<br>6&gt;搜索和排序<br>auto it &#x3D; find(v.begin(), v.end(), 10); &#x2F;&#x2F; 搜索值为 10 的元素<br>if (it !&#x3D; v.end()) {<br>    &#x2F;&#x2F; 元素找到<br>}<br>sort(v.begin(), v.end()); &#x2F;&#x2F; 排序 vector 中的元素<br>7&gt;范围基于的 for 循环<br>for (int elem : v) {<br>    &#x2F;&#x2F; 对 v 中的每个元素执行操作<br>}</p><p>注意：std::vector<string>v 和std::vector<string>v[5]的区别 前者为一位数组，后者就相当于5个长度不定的一维数组</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;一.c++ –动态数组 std::vector (用using … std; std省略)&lt;br&gt;1.作用：封装了可以改变大小的数组，使其成为存储和管理动态数据集合的首选方式&lt;br&gt;2.用法： vector&amp;lt;元素类型&amp;gt;变量名;&lt;br&gt;3.常用操作：&lt;br&gt;1&amp;g</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>11.数字反转（升级版）</title>
-    <link href="http://example.com/posts/777cdf84.html"/>
-    <id>http://example.com/posts/777cdf84.html</id>
-    <published>2024-10-24T14:06:56.000Z</published>
-    <updated>2024-10-25T13:03:02.894Z</updated>
-    
-    <content type="html"><![CDATA[<p>题目：<br><a href="11.%E6%95%B0%E5%AD%97%E5%8F%8D%E8%BD%AC%EF%BC%88%E5%8D%87%E7%BA%A7%E7%89%88%EF%BC%89.md">text</a><br>代码：<br>#include &lt;bits&#x2F;stdc++.h&gt;<br>using namespace std;</p><p>string transfer(string s){<br>    reverse(s.begin(), s.end()); &#x2F;&#x2F;知识点1<br>    return s;<br>} </p><p>string zero(string s){<br>    int pos &#x3D; s.find(‘0’);<br>    while(pos &#x3D;&#x3D; 0 &amp;&amp; s.size() &gt; 1){<br>        s &#x3D; s.erase(pos, 1);<br>        pos &#x3D; s.find(‘0’);<br>    }<br>    return s;<br>}</p><p>int main(){<br>    string s, temp;<br>    cin &gt;&gt; s;<br>    int pos &#x3D; s.find(‘.’);</p><pre><code>if (pos != string::npos) &#123; // 小数  //知识点2    temp = s;    s = s.substr(0, pos);    s = transfer(s);    s = zero(s) + temp[pos];        temp = temp.substr(pos + 1);    temp = zero(temp);    temp = transfer(temp);    //cout&lt;&lt;temp&lt;&lt;endl;    s = s + temp;&#125; else &#123;    pos = s.find(&#39;/&#39;);    if (pos != string::npos) &#123; // 分数        temp = s;        s = s.substr(0, pos);        s = transfer(s);        s = zero(s) + temp[pos];                temp = temp.substr(pos + 1);        temp = transfer(temp);        temp = zero(temp);        s = s + temp;    &#125; else &#123;        pos = s.find(&#39;%&#39;);        if (pos != string::npos) &#123; // 百分数            s = s.substr(0, s.size() - 1);  //知识点3            s = transfer(s);            s = zero(s) + &#39;%&#39;;        &#125; else &#123; // 整数            s = transfer(s);            s = zero(s);        &#125;    &#125;&#125;cout &lt;&lt; s;return 0;</code></pre><p>}</p><p>知识点：<br>1.reverse(s.begin(), s.end());<br>作用：将字符串s反转，eg:123 &#x3D; 321<br>头文件：string (c++)</p><p>2.string::npos<br>作用：pos !&#x3D; string::npos 如果 pos 的值不等于 string::npos，则说明找到了对应的字符或子字符串。否则，表示未找到匹配。<br>在C++中，string::npos 表示 string 类型中的一个静态常量，通常用于表示未找到匹配的位置<br>注意：本身表示未找到，所以不等于才表示找到</p><p>3.s &#x3D; s.substr(0, s.size() - 1);<br>作用：s.substr(起始位置，截取长度) 截取字符串  表示从0开始(包括0)，截取s.size() - 1个长度<br>头文件：string (c++)</p><p>总结：<br>1.写代码前 先思考 想出具体方法！！！以及易错点<br>例如: 去掉后面的0时，如果只判断0的位置是否在最后，则当前面有0时将无法判断<br>2.分模块实现，每写一个模块就进行测试，防止一错再错<br>3.不要过度依赖人工智能，自己判断错误</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;a href=&quot;11.%E6%95%B0%E5%AD%97%E5%8F%8D%E8%BD%AC%EF%BC%88%E5%8D%87%E7%BA%A7%E7%89%88%EF%BC%89.md&quot;&gt;text&lt;/a&gt;&lt;br&gt;代码：&lt;br&gt;#include &amp;lt;</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>12.斯诺登的密码</title>
-    <link href="http://example.com/posts/777cdf84.html"/>
-    <id>http://example.com/posts/777cdf84.html</id>
-    <published>2024-10-24T14:06:56.000Z</published>
-    <updated>2024-10-27T13:37:30.605Z</updated>
-    
-    <content type="html"><![CDATA[<p>题目：<br><a href="pic-%E6%B4%9B%E8%B0%B7%E5%AD%97%E7%AC%A6%E4%B8%B2/12.%E6%96%AF%E8%AF%BA%E7%99%BB%E7%9A%84%E5%AF%86%E7%A0%81.png">alt text</a><br>代码：<br>#include &lt;bits&#x2F;stdc++.h&gt;<br>#include<cstring><br>using namespace std;<br>&#x2F;*<br>1.输入，string 先对格式不做要求<br>2.找数字 存入数组中，利用for循环遍历 存储到数组<br>3.平方 取模 去0<br>*&#x2F;<br>int main(){<br>    string s[6];<br>    string snum[26] &#x3D; {“one”,”two”,”three”,”four”,”five”,”six”,”seven”,”eight”,”nine”,”ten”,”eleven”,”twelve”,”thirteen”,”fourteen”,”fifteen”,”sixteen”,”seventeen”,”eighteen”,”nineteen”,”twenty”,”a”,”both”,”another”,”first”,”second”,”third”};<br>    int num[26] &#x3D; {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,1,1,2,3};<br>    int data[6] &#x3D; {0};<br>    int j &#x3D; 0;</p><pre><code>for(int i = 0; i &lt; 6; i++)&#123;    cin&gt;&gt;s[i];    for(int k = 0; k &lt; 26; k++)&#123; //为什么边界是26         if(s[i] == snum[k] &amp;&amp; (num[k] * num[k]) % 100 != 0)&#123;            data[j] = (num[k] * num[k]) % 100;            j++;            break;        &#125;    &#125;&#125;if(j == 0)&#123;    cout&lt;&lt;0;    return 0;&#125;sort(data, data + j);for(int i = 0; i &lt; j; i++)&#123;    if(i != 0 &amp;&amp; data[i] &lt; 10)&#123;        cout&lt;&lt;0;    &#125;    cout&lt;&lt;data[i];&#125;return 0;</code></pre><p>}</p><p>错误原因：<br>没有彻底搞清楚题目，导致走了很多弯路，简单问题复杂化<br>知识点 + 疑惑点：<br>string snum[26] 有26个元素，数组下标仍然为26.不为25，循环时，从0开始，K &lt; 26, for(int k &#x3D; 0; k &lt; 26; k++)<br>解答：元素个数比下标大一 有26个元素，下标为0 ~ 25<br>在C和C++中，定义一个数组时，需要指定数组的大小，而不是数组中元素的数量。因此，当您定义数组时，需要指定数组的大小，以便为所有元素提供足够的空间。在定义数组时，指定数组的大小应该是数组中元素的数量，而不是最后一个元素的索引。</p><p>知识补充；<br>代码：<br>#include<iostream><br>#include<cstdio><br>#include<cstring><br>#include<algorithm><br>#include<map>   &#x2F;&#x2F;知识点：map<br>using namespace std;<br>map&lt;string,int&gt;q;<br>const int mx&#x3D;66;<br>int top;<br>int st[mx];<br>string s;<br>int main(){</p><pre><code> q[&quot;one&quot;]=1;q[&quot;two&quot;]=2;q[&quot;three&quot;]=3;q[&quot;four&quot;]=4;q[&quot;five&quot;]=5;q[&quot;six&quot;]=6;q[&quot;seven&quot;]=7;q[&quot;eight&quot;]=8;q[&quot;nine&quot;]=9;q[&quot;ten&quot;]=10； q[&quot;eleven&quot;]=11;q[&quot;twelve&quot;]=12;q[&quot;thirteen&quot;]=13;q[&quot;fourteen&quot;]=14;q[&quot;fifteen&quot;]=15;q[&quot;sixteen&quot;]=16;q[&quot;seventeen&quot;]=17;q[&quot;eighteen&quot;]=18;q[&quot;nineteen&quot;]=19;q[&quot;twenty&quot;]=20; q[&quot;a&quot;]=1;q[&quot;both&quot;]=2;q[&quot;another&quot;]=1;q[&quot;first&quot;]=1;q[&quot;second&quot;]=2;q[&quot;third&quot;]=3; //打表 for(int i=1;i&lt;=6;i++)&#123;     cin&gt;&gt;s;     if(q[s])&#123;//如果可以构成数字         int k=q[s]*q[s]%100;         if(k==0)continue;//要是为0就没有必要存了         st[++top]=k;     &#125; &#125; sort(st+1,st+top+1);//从小到大排 cout&lt;&lt;st[1]; for(int i=2;i&lt;=top;i++)&#123; if(st[i]&lt;10)cout&lt;&lt;0;//不这样只能拿10分 cout&lt;&lt;st[i]; &#125; return 0;</code></pre><p>}</p><p>知识点：map<br><map> 是标准模板库（STL）的一部分，它提供了一种关联容器，用于存储键值对（key-value pairs）。<br>map 容器中的元素是按照键的顺序自动排序的，这使得它非常适合需要快速查找和有序数据的场景</p><p>1.定义：map&lt;key_type, value_type&gt; myMap; 相当于：一个二元组对，第一列和第二列 利用map构成了一种一一对应的映射关系<br>eg：map&lt;string,int&gt;q;<br>2.使用&#x2F;初始化：myMap[key] &#x3D; value; 变量名[第一个元素值] &#x3D; 第二个元素值;<br>eg: q[“one”]&#x3D;1; q[“two”]&#x3D;2; q[“three”]&#x3D;3;</p><p>3.定义和特性<br>键值对：map 存储的是键值对，其中每个键都是唯一的。<br>排序：map 中的元素按照键的顺序自动排序，通常是升序。<br>唯一性：每个键在 map 中只能出现一次。<br>双向迭代器：map 提供了双向迭代器，可以向前和向后遍历元素。</p><ol start="4"><li>访问元素：value &#x3D; myMap[key];<br>eg: int k&#x3D;q[s]*q[s]%100;</li></ol><p>5.遍历元素：<br>for (map&lt;key_type, value_type&gt;::iterator it &#x3D; myMap.begin(); it !&#x3D; myMap.end(); ++it) {<br>    cout &lt;&lt; it-&gt;first &lt;&lt; “ &#x3D;&gt; “ &lt;&lt; it-&gt;second &lt;&lt; endl;<br>}</p><p>实例<br>下面是一个使用 map 的简单实例，我们将创建一个 map 来存储员工的姓名和他们的年龄，并遍历这个 map 来打印每个员工的姓名和年龄。</p><p>实例<br>#include <iostream>#include <map><br>#include <string></p><p>int main() {<br>    &#x2F;&#x2F; 创建一个 map 容器，存储员工的姓名和年龄<br>    std::map&lt;std::string, int&gt; employees;</p><pre><code>// 插入员工信息employees[&quot;Alice&quot;] = 30;employees[&quot;Bob&quot;] = 25;employees[&quot;Charlie&quot;] = 35;// 遍历 map 并打印员工信息for (std::map&lt;std::string, int&gt;::iterator it = employees.begin(); it != employees.end(); ++it) &#123;    std::cout &lt;&lt; it-&gt;first &lt;&lt; &quot; is &quot; &lt;&lt; it-&gt;second &lt;&lt; &quot; years old.&quot; &lt;&lt; std::endl;&#125;return 0;</code></pre><p>}<br>输出结果:</p><p>Alice is 30 years old.<br>Bob is 25 years old.<br>Charlie is 35 years old.</p><p>进阶用法</p><p>6.检查键是否存在:<br>if (myMap.find(key) !&#x3D; myMap.end()) {<br>    &#x2F;&#x2F; 键存在<br>}</p><p>7.删除元素:<br>myMap.erase(key);</p><p>8.清空:<br>myMap.clear();</p><p>9.获取 map 的大小:<br>size_t size &#x3D; myMap.size();</p><p>10.使用自定义比较函数:</p><p>实例<br>#include <map><br>#include <string><br>#include <functional></p><p>bool myCompare(const std::string&amp; a, const std::string&amp; b) {<br>    return a &lt; b;<br>}</p><p>int main() {<br>    std::map&lt;std::string, int, std::function&lt;bool(const std::string&amp;, const std::string&amp;)&gt;&gt; myMap(myCompare);</p><pre><code>// 其他操作...return 0;</code></pre><p>}</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;a href=&quot;pic-%E6%B4%9B%E8%B0%B7%E5%AD%97%E7%AC%A6%E4%B8%B2/12.%E6%96%AF%E8%AF%BA%E7%99%BB%E7%9A%84%E5%AF%86%E7%A0%81.png&quot;&gt;alt text</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>5. kotori和素因子（A组，B组）</title>
-    <link href="http://example.com/posts/4c507725.html"/>
-    <id>http://example.com/posts/4c507725.html</id>
-    <published>2024-10-24T14:06:56.000Z</published>
-    <updated>2024-11-18T14:04:26.224Z</updated>
-    
-    <content type="html"><![CDATA[<p>题目：<br><img src="/pic-%E7%89%9B%E5%AE%A2/5.%20kotori%E5%92%8C%E7%B4%A0%E5%9B%A0%E5%AD%90%EF%BC%88A%E7%BB%84%EF%BC%8CB%E7%BB%84%EF%BC%89.png" alt="alt text"><br>代码：<br>#include &lt;bits&#x2F;stdc++.h&gt;<br>using namespace std;<br>&#x2F;*<br>思路总结：<br>1.保存1000以内的质数–埃拉托斯特尼筛法<br>2.求出所有整数的所有素因子–动态二维数组<br>3.dfs求出最小素因子之和<br>*&#x2F;<br>int ans &#x3D; 9999999;<br>int n;<br>int vis[10001];</p><p>vector<int>v[100];<br>const int MAX &#x3D; 1001;<br>bool prime[MAX];<br>&#x2F;&#x2F; 埃拉托斯特尼筛法<br>void init(){<br>    fill(prime,prime + MAX,true); &#x2F;&#x2F;初始化全为质数<br>    for(int i &#x3D; 2 ; i * i &lt; MAX; ++i){<br>        if(prime[i]){<br>            for(int j &#x3D; i * i; j &lt; MAX; j+&#x3D;i){<br>                prime[j] &#x3D; false;<br>            }<br>        }<br>    }<br>}<br>void dfs(int d,int sum){&#x2F;&#x2F;重点<br>    if(d &#x3D;&#x3D; n){&#x2F;&#x2F;先写退出条件–深度达到最大值<br>        ans &#x3D; min(ans,sum);<br>        return;<br>    }<br>    for(int i &#x3D; 0; i &lt; v[d].size(); i++){&#x2F;&#x2F;从最底层开始，一次选一个值<br>        if(!vis[v[d][i]]){<br>            vis[v[d][i]] &#x3D; 1;&#x2F;&#x2F;标记该值，表已经被用过<br>            dfs(d + 1, sum + v[d][i]); &#x2F;&#x2F;选完一个换下一个<br>            vis[v[d][i]] &#x3D; 0; &#x2F;&#x2F;上一个选完后回头，换一个路，将之前标记过的值还原<br>        }<br>    }<br>}<br>int main(){<br>    init();<br>    scanf(“%d”,&amp;n);<br>    for(int i &#x3D; 0; i &lt; n; i++){<br>        int temp;<br>        scanf(“%d”,&amp;temp);<br>        for(int j &#x3D; 2; j &lt;&#x3D; temp; j++){<br>            if(prime[j]&amp;&amp;temp % j &#x3D;&#x3D; 0){<br>                v[i].push_back(j);<br>            }<br>        }<br>    }<br>    dfs(0,0);<br>    if(ans &#x3D;&#x3D; 9999999) printf(“-1\n”);<br>    else printf(“%d\n”,ans);<br>    return 0;<br>} </p><p>c语言版<br>#include &lt;stdio.h&gt;<br>#include &lt;string.h&gt;</p><p>int ans &#x3D; 9999999;<br>int n;<br>int vis[10001];</p><p>int v[100][100];<br>const int MAX &#x3D; 1001;<br>int prime[MAX];</p><p>void init() {<br>    memset(prime, 1, sizeof(prime)); &#x2F;&#x2F; 初始化全为质数<br>    for (int i &#x3D; 2; i * i &lt; MAX; ++i) {<br>        if (prime[i]) {<br>            for (int j &#x3D; i * i; j &lt; MAX; j +&#x3D; i) {<br>                prime[j] &#x3D; 0;<br>            }<br>        }<br>    }<br>}</p><p>void dfs(int d, int sum) {<br>    if (d &#x3D;&#x3D; n) {<br>        ans &#x3D; ans &lt; sum ? ans : sum;<br>        return;<br>    }<br>    for (int i &#x3D; 0; i &lt; 100; i++) {<br>        if (v[d][i] !&#x3D; 0 &amp;&amp; !vis[v[d][i]]) {<br>            vis[v[d][i]] &#x3D; 1;<br>            dfs(d + 1, sum + v[d][i]);<br>            vis[v[d][i]] &#x3D; 0;<br>        }<br>    }<br>}</p><p>int main() {<br>    init();<br>    scanf(“%d”, &amp;n);<br>    for (int i &#x3D; 0; i &lt; n; i++) {<br>        int temp;<br>        scanf(“%d”, &amp;temp);<br>        int k &#x3D; 0;<br>        for (int j &#x3D; 2; j &lt;&#x3D; temp; j++) {<br>            if (prime[j] &amp;&amp; temp % j &#x3D;&#x3D; 0) {<br>                v[i][k] &#x3D; j;<br>                k++;<br>            }<br>        }<br>    }<br>    dfs(0, 0);<br>    if (ans &#x3D;&#x3D; 9999999) printf(“-1\n”);<br>    else printf(“%d\n”, ans);<br>    return 0;<br>}<br>错误点：<br>c语言没有vector 但不一定非要知道数组的大小，设置一个足够大的数组范围，判断其元素值不为0即可停止 (因为数组有效元素不为0)</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;题目：&lt;br&gt;&lt;img src=&quot;/pic-%E7%89%9B%E5%AE%A2/5.%20kotori%E5%92%8C%E7%B4%A0%E5%9B%A0%E5%AD%90%EF%BC%88A%E7%BB%84%EF%BC%8CB%E7%BB%84%EF%BC%89.p</summary>
+    <summary type="html">&lt;p&gt;引入：&lt;br&gt;递归代码模板：&lt;br&gt;1.先写出口&lt;br&gt;2.再写普通相同情况&lt;br&gt;eg: 斐波那契数列 1 2 5 8 13…&lt;br&gt;int fibo(int a){&lt;br&gt;    if(a == 0 || a == 1){  //先写出口&lt;br&gt;        retu</summary>
       
     
     
